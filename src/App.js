@@ -7,7 +7,7 @@ function App() {
         <>
         <h1> Drawing Area</h1>
         <div className="App drawing-area">
-          <DrawingArea onClearLines={() => {alert("Test");}}/>
+          <DrawingArea/>
         </div>
         </>
   );
