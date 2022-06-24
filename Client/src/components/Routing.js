@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import ScoreBoard from "./Pages/ScoreBoard";
-import App from "./Pages/App";
+import HomePage from "../Pages/HomePage";
+import ScoreBoard from "../Pages/ScoreBoard";
+import App from "../main/App";
 
 function Routing() {
   return (
     <Router>
-      <nav>
+      <nav className="header">
         <Link to="/"> HomePage </Link>
       </nav>
       <Routes>

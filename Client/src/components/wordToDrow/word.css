@@ -9,7 +9,7 @@
 .words-area .words-container {
     width: 260px;
     height: 116px;
-    background-image: url('../riso.svg');
+    background-image: url('../../assets/ribbons.svg');
     background-size: cover;
     background-repeat: no-repeat;
     margin: auto;

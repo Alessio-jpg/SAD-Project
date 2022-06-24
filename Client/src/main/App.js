@@ -1,6 +1,6 @@
 //import logo from './photo.png';
-import DrawingArea from './DrawingArea';
-import WordToDrowArea from './wordToDrow/word';
+import DrawingArea from '../components/DrawingArea';
+import WordToDrowArea from '../components/wordToDrow/word';
 import './App.css';
 
 function App() {
