@@ -1,6 +1,10 @@
 import { React } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import { useEffect, useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEraser } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import './DrawingArea.css';
 
 const DrawingArea = ({onClearLines, clearLines}) => {
 
@@ -54,40 +58,43 @@ const DrawingArea = ({onClearLines, clearLines}) => {
     };
 
     return (
-        <div className=" text-center text-dark">
-            <Stage
-                width={600}
-                height={600}
-                onMouseDown={handleMouseDown}
-                onMousemove={handleMouseMove}
-                onMouseup={handleMouseUp}
-                className="canvas-stage"
-            >
-                <Layer>
-                    {lines.map((line, i) => (
-                        <Line
-                        key={i}
-                        points={line.points}
-                        stroke="#000000"
-                        strokeWidth={2}
-                        tension={0.5}
-                        lineCap="round"
-                        /*
-                        globalCompositeOperation={
-                            line.tool === 'eraser' ? 'destination-out' : 'source-over'
-                        }
-                        */
-                        />
-                    ))}
-                </Layer>
-            </Stage>
-            <button onClick={sendDrawing}>
-                Send
-            </button>
-            <button onClick={clearDrawing}>
-                Clear
-            </button>
-
+        <div className="drowing-container">
+            <div className=" text-center text-dark">
+                <Stage
+                    width={700}
+                    height={700}
+                    onMouseDown={handleMouseDown}
+                    onMousemove={handleMouseMove}
+                    onMouseup={handleMouseUp}
+                    className="canvas-stage"
+                >
+                    <Layer>
+                        {lines.map((line, i) => (
+                            <Line
+                            key={i}
+                            points={line.points}
+                            stroke="#fff"
+                            strokeWidth={2}
+                            tension={0.5}
+                            lineCap="round"
+                            /*
+                            globalCompositeOperation={
+                                line.tool === 'eraser' ? 'destination-out' : 'source-over'
+                            }
+                            */
+                            />
+                        ))}
+                    </Layer>
+                </Stage>
+                <button className="send-button" onClick={sendDrawing}>
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                    <p>Invia</p>
+                </button>
+                <button className="delete-button" onClick={clearDrawing}>
+                    <FontAwesomeIcon icon={faEraser} /> 
+                    <p>Cancella</p>            
+                </button>
+            </div>
         </div>
     )
 }

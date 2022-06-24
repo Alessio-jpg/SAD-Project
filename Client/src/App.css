@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  margin: 10% 33%;
+}
+
+.drawing-area {
+  width: 100vw;
+  height: 750px;
+  background-color: #fff;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 17px;
+}
