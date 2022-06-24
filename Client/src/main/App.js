@@ -1,5 +1,5 @@
 //import logo from './photo.png';
-import DrawingArea from '../components/DrawingArea';
+import DrawingArea from '../components/DrawingArea/DrawingArea';
 import WordToDrowArea from '../components/wordToDrow/word';
 import './App.css';
 
