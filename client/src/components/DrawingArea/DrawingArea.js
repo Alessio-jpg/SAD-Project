@@ -4,12 +4,15 @@ import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEraser } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import {SocketContext} from '../../socket';
 import './DrawingArea.css';
 
 const DrawingArea = ({onClearLines, clearLines}) => {
 
     const [lines, setLines] = useState([]);
     const isDrawing = useRef(false);
+
+    const socket = useContext(SocketContext);
 
     useEffect(() => {
         //loadImage();
@@ -18,6 +21,8 @@ const DrawingArea = ({onClearLines, clearLines}) => {
     const sendDrawing = (e) => {
         isDrawing.current = false;
         console.log(lines);
+
+        socket.emit("upload-event", lines);
     }
 
     const clearDrawing = (e) => {
