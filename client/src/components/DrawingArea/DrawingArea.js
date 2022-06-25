@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEraser } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
@@ -71,6 +71,9 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                     onMouseDown={handleMouseDown}
                     onMousemove={handleMouseMove}
                     onMouseup={handleMouseUp}
+                    onTouchStart={handleMouseDown}
+                    onTouchMove={handleMouseMove}
+                    onTouchEnd={handleMouseUp}
                     className="canvas-stage"
                 >
                     <Layer>
