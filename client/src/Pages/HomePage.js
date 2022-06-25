@@ -9,13 +9,10 @@ function HomePage() {
       THIS IS THE HOMEPAGE PAGE!
       <button className="button-play" onClick={() => {
         navigate("/App");}}>
-      Start Drawing</button>
-      <button
-        onClick={() => {
-          navigate("/ScoreBoard");
-        }}
-      >
-        {" "}
+      Start Drawing
+      </button>
+      <button className="button-score" onClick={() => {
+        navigate("/ScoreBoard");}}>
         View ScoreBoard
       </button>
     </div>
