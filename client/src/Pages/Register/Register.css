@@ -9,9 +9,13 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: #dcdcdc;
     padding: 30px;
 }
+
+.register__container .logo {
+    margin-bottom: 20px;
+}
+
 
 .register__textBox {
     padding: 10px;

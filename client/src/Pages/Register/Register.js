@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import logo from '../../assets/home-image.png';
 import {
   auth,
   registerWithEmailAndPassword,
 } from "../../firebase";
 import "./Register.css";
+
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,13 +18,18 @@ function Register() {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password);
   };
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/HomePage");
   }, [user, loading]);
+  
   return (
     <div className="register">
       <div className="register__container">
+        <div className="logo">
+          <img src={logo}></img>
+        </div>
         <input
           type="text"
           className="register__textBox"

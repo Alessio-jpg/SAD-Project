@@ -30,7 +30,7 @@ function HomePage() {
   return (
     <div className="home-area">
       <div className="home-container">
-        <div className="image">
+        <div className="logo">
           <img src={imm}></img>
         </div>
         <div className="username">

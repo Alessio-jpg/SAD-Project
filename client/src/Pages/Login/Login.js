@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import logo from '../../assets/home-image.png';
+
 import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
@@ -18,6 +20,9 @@ function Login() {
   return (
     <div className="login">
       <div className="login__container">
+        <div className="logo">
+          <img src={logo}></img>
+        </div>
         <input
           type="text"
           className="login__textBox"
