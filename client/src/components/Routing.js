@@ -6,9 +6,6 @@ import App from "../main/App";
 function Routing() {
   return (
     <Router>
-      <nav className="header">
-        <Link to="/"> HomePage </Link>
-      </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/App" element={<App />} />
