@@ -2,7 +2,7 @@
     width: 100vw;
     display: flex;
     height: 100vh;
-    background-image: url('../../public/back.png');
+    background-image: url('../../../public/back.png');
     background-color: white;
 }
 
