@@ -45,7 +45,7 @@
 			left: 70px;
 			top: 5px;
 						
-			background: linear-gradient(45deg,#3edb8d, #2caa6b, #1e8ec0, #973b5e, #7533a8, #6338ba);
+			background: linear-gradient(45deg,#ffca45, #ffe091, #f44700, #19fff3, #7533a8, #6338ba);
 			background-size: 1000% 1000%;
 
 			animation: colorGradientFade 16s ease infinite;
