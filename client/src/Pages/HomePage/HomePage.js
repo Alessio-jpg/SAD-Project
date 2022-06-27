@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { socket} from '../../socket';
 import './HomePage.css';
 import imm from '../../assets/home-image.png'
 
@@ -22,6 +23,16 @@ function HomePage() {
       alert("An error occured while fetching user data");
     }
   };
+  const joinQueue = () => {
+    try {
+      socket.emit("join-queue");
+      navigate("/WaitingRoom");
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while joining the game queue");
+    }
+  }
+
   useEffect(() => {
     if (loading) return;
     if (!user) return navigate("/");
@@ -37,8 +48,7 @@ function HomePage() {
           <p> {name}</p>
         </div>
         <div className="first-button">
-          <button className="button-play" onClick={() => {
-          navigate("/App");}}>
+          <button className="button-play" onClick={joinQueue}>
           Start Drawing
           </button>
         </div>

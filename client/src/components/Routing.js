@@ -4,6 +4,7 @@ import ScoreBoard from "../Pages/ScoreBoard/ScoreBoard";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import App from "../main/App";
+import WaitingRoom from "../Pages/WaitingRoom/WaitingRoom";
 
 function Routing() {
   return (
@@ -14,6 +15,7 @@ function Routing() {
         <Route path="/Register" element={<Register />} />
         <Route path="/App" element={<App />} />
         <Route path="/ScoreBoard" element={<ScoreBoard />} />
+        <Route path="/WaitingRoom" element={<WaitingRoom />} />
       </Routes>
     </Router>
   );

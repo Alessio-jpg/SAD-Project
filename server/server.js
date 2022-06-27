@@ -1,6 +1,7 @@
 const express = require('express')
 const socketIo = require('socket.io')
 const http = require('http')
+const crypto = require('crypto')
 const PORT = process.env.PORT || 5000
 
 const app = express()
@@ -19,13 +20,55 @@ const io = socketIo(server,{
     }
 }) //in case server and client run on different urls
 
+var Mutex = require('async-mutex').Mutex;
+
+const queue_mux = new Mutex();
+var queue_count = 0;
 io.on('connection', (socket) => {
     console.log('client connected: ',socket.id)
     
-    socket.join('game-room')
+    //socket.join('game-room')
 
     socket.on('upload-event', (img) => {
       console.log(img)
+    })
+
+    socket.on('join-queue', () => {
+      queue_mux.runExclusive( () => {
+        if(! socket.rooms.has('queue-room')) {
+          console.log("User \u001b[1;34m" + socket.id + "\u001b[0m joined the Queue")
+          socket.join('queue-room')
+          queue_count =  queue_count + 1;
+          io.to('queue-room').emit('update-queue-count', queue_count)
+
+          if(queue_count > 3) {
+            console.log("Starting game . . .")
+            game_room = "game-room_" + randomString()
+
+            console.log("Creating game room, ID: " + game_room)
+          }
+        }
+      })
+    })
+
+    socket.on('leave-queue', () => {
+      queue_mux.runExclusive( () => {
+        if(socket.rooms.has('queue-room')) {
+          queue_count -= 1
+          socket.leave('queue-room')
+          console.log("User \u001b[1;34m" + socket.id + "\u001b[0m left the Queue")
+          socket.to('queue-room').emit('update-queue-count', queue_count)
+        }
+      }
+      )
+    })
+
+    socket.on('disconnecting', () => {
+      if(socket.rooms.has('queue-room')) {
+        queue_count -= 1;
+        console.log("User \u001b[1;34m" + socket.id + "\u001b[0m left the Queue")
+        socket.to('queue-room').emit('update-queue-count', queue_count)
+      }
     })
   
     socket.on('disconnect', (reason)=>{
@@ -44,6 +87,14 @@ server.listen(PORT, err=> {
   if(err) console.log(err)
   console.log('Server running on Port ', PORT)
 })
+
+
+function randomString(size = 21) {  
+  return crypto
+    .randomBytes(size)
+    .toString('hex')
+    .slice(0, size)
+}
 
 /*
 const express = require("express");
