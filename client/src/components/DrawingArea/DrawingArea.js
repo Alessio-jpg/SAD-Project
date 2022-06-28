@@ -69,6 +69,9 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                 <Stage
                     width={width}
                     height={width}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseUp}
                     onTouchStart={handleMouseDown}
                     onTouchMove={handleMouseMove}
                     onTouchEnd={handleMouseUp}
