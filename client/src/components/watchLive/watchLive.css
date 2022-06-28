@@ -1,0 +1,29 @@
+.watch-live-container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: grid;
+    border-radius: 20px;
+    border: 1px dashed #000;
+    background-color: #fff;
+}
+
+.user-name {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 3px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@media screen and (max-width: 480px) {
+    .user-name {
+        font-size: 12px;
+    }
+}
+
+
+
+
+

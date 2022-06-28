@@ -1,7 +1,7 @@
 import { React } from 'react';
-import './word.css';
+import './WordToDraw.css';
 
-const WordToDrowArea = () => {
+const WordToDrawArea = () => {
 
     var fisrtWard = 'prova1';
     var secondWord = 'prova2';
@@ -23,4 +23,4 @@ const WordToDrowArea = () => {
     )
 }
 
-export default WordToDrowArea;
+export default WordToDrawArea;

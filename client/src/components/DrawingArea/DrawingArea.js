@@ -5,19 +5,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEraser } from '@fortawesome/free-solid-svg-icons'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import {SocketContext} from '../../socket';
+import $ from 'jquery';
 import './DrawingArea.css';
 
 const DrawingArea = ({onClearLines, clearLines}) => {
 
     const [lines, setLines] = useState([]);
     const isDrawing = useRef(false);
-
+    const width = $('.drawing-area').width();
     const socket = useContext(SocketContext);
 
     useEffect(() => {
         //loadImage();
     }, [clearLines])
-    
+
     const sendDrawing = (e) => {
         isDrawing.current = false;
         console.log(lines);
@@ -66,11 +67,11 @@ const DrawingArea = ({onClearLines, clearLines}) => {
         <div className="drowing-container">
             <div className=" text-center text-dark">
                 <Stage
-                    width={700}
-                    height={700}
-                    onMouseDown={handleMouseDown}
-                    onMousemove={handleMouseMove}
-                    onMouseup={handleMouseUp}
+                    width={width}
+                    height={width}
+                    onTouchStart={handleMouseDown}
+                    onTouchMove={handleMouseMove}
+                    onTouchEnd={handleMouseUp}
                     className="canvas-stage"
                 >
                     <Layer>
@@ -91,6 +92,7 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                         ))}
                     </Layer>
                 </Stage>
+                
                 <button className="send-button" onClick={sendDrawing}>
                     <FontAwesomeIcon icon={faPaperPlane} />
                     <p>Invia</p>
@@ -99,9 +101,12 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                     <FontAwesomeIcon icon={faEraser} /> 
                     <p>Cancella</p>            
                 </button>
+                
             </div>
         </div>
     )
 }
+
+
 
 export default DrawingArea;

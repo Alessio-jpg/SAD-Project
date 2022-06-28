@@ -1,0 +1,54 @@
+.matchedWord-container {
+    width: 50%;
+    height: 70%;
+    margin: auto;
+    border: 2px dashed #767676;
+    border-radius: 20px;
+    background-color: transparent;
+    display: block;
+}
+
+.matchedWord {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}
+
+.matchedWord-container .legend {
+    position: relative;
+    top: -10px;
+    width: 120px;
+    margin: auto;
+    font-size: 13px;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+    margin-bottom: -10px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}
+
+@media screen and (max-width: 480px) {
+    .matchedWord-container .legend {
+        font-size: 10px;
+        margin-bottom: -8px;
+    }
+
+    .matchedWord-container {
+        width: 80%;
+    }
+
+    .matchedWord {
+        font-size: 17px;
+    }
+}
+
+
+
+
