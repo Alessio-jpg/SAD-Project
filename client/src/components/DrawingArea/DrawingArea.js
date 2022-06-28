@@ -71,7 +71,7 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                     height={width}
                     onMouseDown={handleMouseDown}
                     onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseUp}
+                    onMouseUp={handleMouseUp}
                     onTouchStart={handleMouseDown}
                     onTouchMove={handleMouseMove}
                     onTouchEnd={handleMouseUp}
