@@ -22,23 +22,25 @@ function WaitingRoom() {
     setCount(value)
   });
 
-  socket.on("start-game", (value) => {
+  socket.on("start_game", (value) => {
+    console.log(value)
+    console.log("COOKIE")
+    document.cookie = "names=[Test,Test2]";
     navigate("/App");
   })
-  
   
   return (
     <div className="waiting-room">
         <div className="home-container">
             <div className="loading">
             
-              <div class="square" id="sqr0"></div>
-              <div class="square" id="sqr1"></div>
-              <div class="square" id="sqr2"></div>
-              <div class="square" id="sqr3"></div>
-              <div class="square" id="sqr4"></div>
-              <div class="square" id="sqr5"></div>
-              <div class="square" id="sqr6"></div>
+              <div className="square" id="sqr0"></div>
+              <div className="square" id="sqr1"></div>
+              <div className="square" id="sqr2"></div>
+              <div className="square" id="sqr3"></div>
+              <div className="square" id="sqr4"></div>
+              <div className="square" id="sqr5"></div>
+              <div className="square" id="sqr6"></div>
 	          
             </div>
         

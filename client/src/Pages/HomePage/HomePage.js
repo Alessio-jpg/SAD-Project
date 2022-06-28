@@ -48,7 +48,7 @@ function HomePage() {
           <p> {name}</p>
         </div>
         <div className="first-button">
-          <button className="button-play" onClick={joinQueue}>
+          <button className="button-play" onClick={() => {navigate("/WaitingRoom")}}>
           Start Drawing
           </button>
         </div>

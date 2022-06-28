@@ -20,12 +20,46 @@ const io = socketIo(server,{
     }
 }) //in case server and client run on different urls
 
+function tryMatchmaking() {
+  var players = [];
+  io.sockets.adapter.rooms.get('queue-room').forEach(id => {
+    //console.log(id,(io.sockets.sockets.get(id)));
+    players.push(io.sockets.sockets.get(id));
+  });
+  console.log("Players in queue: "+ players.length)
+  //console.log(io.sockets.adapter.rooms.get('queue-room').values())
+  if (players.length > 3) {
+    console.log("Starting game . . .")
+    
+    //var game = new Game();
+
+    do {
+      game_room = "game-room_" + randomString()
+    }while(io.sockets.adapter.rooms.has(game_room))
+  
+    console.log("Creating game room, ID: " + game_room)
+
+    for (let i = 0; i < 4; i++) {
+      players[i].leave('queue-room');
+      players[i].join(game_room);
+    }
+    io.to(game_room).emit("start_game", {name: "Name", uuid: "UUID"})
+    queue_count -= 4
+
+    io.to("queue-room").emit('update-queue-count', queue_count)
+
+    console.log(io.sockets.adapter.rooms)
+  }
+}
+
+
+
 var Mutex = require('async-mutex').Mutex;
 
 const queue_mux = new Mutex();
 var queue_count = 0;
 io.on('connection', (socket) => {
-    console.log('client connected: ',socket.id)
+    console.log('client connected: \u001b[1;34m',socket.id)
     
     //socket.join('game-room')
 
@@ -41,12 +75,7 @@ io.on('connection', (socket) => {
           queue_count =  queue_count + 1;
           io.to('queue-room').emit('update-queue-count', queue_count)
 
-          if(queue_count > 3) {
-            console.log("Starting game . . .")
-            game_room = "game-room_" + randomString()
-
-            console.log("Creating game room, ID: " + game_room)
-          }
+          tryMatchmaking()
         }
       })
     })
