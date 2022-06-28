@@ -6,7 +6,7 @@ import {io} from "socket.io-client";
 import CountDownBar from '../components/WatchLive/CountdownBar/CountdownBar';
 import $ from 'jquery'; 
 import './App.css';
-import WatchLiveArea from '../components/WatchLive/WatchLive';
+import WatchLiveArea from '../components/WatchLive/WatchDraw';
 import MatchedWord from '../components/MatchedWord/MatchedWord';
 import { useEffect } from 'react';
 

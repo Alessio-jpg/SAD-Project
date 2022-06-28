@@ -1,7 +1,7 @@
 import  React from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import { useEffect, useState } from 'react';
-import './WatchLive.css'
+import './WatchDraw.css'
 import $ from 'jquery';
 
 
