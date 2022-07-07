@@ -1,43 +1,29 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { socket} from '../../socket';
 import './HomePage.css';
+import Axios from "axios";
 import imm from '../../assets/home-image.png'
 
 function HomePage() {
   let navigate = useNavigate();
-  const [user, loading, error] = useAuthState(auth);
-  const [name, setName] = useState("");
-  const fetchUserName = async () => {
-    try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setName(data.name);
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
-    }
-  };
-  const joinQueue = () => {
-    try {
-      socket.emit("join-queue");
-      navigate("/WaitingRoom");
-    } catch (err) {
-      console.error(err);
-      alert("An error occured while joining the game queue");
-    }
+  useEffect(() => {
+      userLoggedIn();
+  }, []); 
+
+  Axios.defaults.withCredentials = true;
+
+
+  const userLoggedIn = () => {
+      Axios.get("http://localhost:4000/isLogged").then((response) =>{
+          if(!response.data.loggedIn) {
+              console.log(response);
+              navigate("/");
+          }
+      });
   }
 
-  useEffect(() => {
-    if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
-  }, [user, loading]);
+
   return (
     <div className="home-area">
       <div className="home-container">
@@ -45,7 +31,7 @@ function HomePage() {
           <img src={imm}></img>
         </div>
         <div className="username">
-          <p> {name}</p>
+          <p>Username</p>
         </div>
         <div className="first-button">
           <button className="button-play" onClick={() => {navigate("/WaitingRoom")}}>

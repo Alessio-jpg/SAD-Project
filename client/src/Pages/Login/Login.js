@@ -1,22 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import Axios from "axios";
 import logo from '../../assets/home-image.png';
 
 import "./Login.css";
 function Login() {
-  const [email, setEmail] = useState("");
+  let navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
+
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  Axios.defaults.withCredentials = true;
+
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/HomePage");
-  }, [user, loading]);
+      userAuthenticated();
+  }, []);
+
+  const login = () => {
+    Axios.post("http://localhost:4000/login", {
+        username: username,
+        password: password,
+    }).then((response) => {
+        console.log(response);
+        if(!response.data.auth) {
+            setLoginStatus(false);
+        } else {
+            console.log(response.data);
+            localStorage.setItem("token", response.data.token);
+            setLoginStatus(true);
+            navigate("/HomePage");
+        }
+    });
+  }
+
+  const userAuthenticated = () => {
+      if(localStorage.getItem("token")) {
+          Axios.get("http://localhost:4000/isUserAuth", {
+              headers: {
+                  "x-access-token": localStorage.getItem("token"),
+              },
+          }).then((response) => {
+              console.log(response);
+              if(response.data.auth) {
+                  navigate('/HomePage');
+              }
+          });
+      } else {
+          console.log("Cacc o token munnezz");
+      }
+  }
+
   return (
     <div className="login">
       <div className="login__container">
@@ -26,9 +60,9 @@ function Login() {
         <input
           type="text"
           className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
         />
         <input
           type="password"
@@ -39,7 +73,7 @@ function Login() {
         />
         <button
           className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={login}
         >
           Login
         </button>
