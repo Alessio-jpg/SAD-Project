@@ -23,9 +23,8 @@ function WaitingRoom() {
   });
 
   socket.on("start_game", (value) => {
-    console.log(value)
-    console.log("COOKIE")
-    document.cookie = "names=[Test,Test2]";
+    console.log(value);
+
     navigate("/App");
   })
   

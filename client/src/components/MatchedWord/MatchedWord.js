@@ -1,5 +1,6 @@
-import { React } from 'react';
+import { React, useContext } from 'react';
 import { useEffect, useState} from 'react';
+import {SocketContext} from '../../socket'; 
 import './MatchedWord.css';
 
 const MatchedWord = () => {
@@ -7,7 +8,9 @@ const MatchedWord = () => {
     
     useEffect(() => {
         setMatchedWord('prova3');
-    })
+    }, [])
+    const socket = useContext(SocketContext);
+    socket.on("neural-guess", (pred) => {setMatchedWord(pred)})
 
     return (
         <div className='matchedWord-container'>
