@@ -2,15 +2,11 @@
 import numpy as np
 import redis
 import json
-from numba import njit
 import cv2
 import matplotlib.pyplot as plt
 from keras.models import load_model
 #import pandas as pd
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
 
 import time
 
@@ -155,3 +151,13 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+
+
+'''
+img = Image(pop_redis())
+
+img.convert()
+
+model.predict(img.data())
+'''
