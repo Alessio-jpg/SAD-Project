@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Socket } from "socket.io-client";
+//import { Socket } from "socket.io-client";
 //import { auth, db } from "../../firebase";
 //import { query, collection, getDocs, where } from "firebase/firestore";
 //import { useAuthState } from "react-firebase-hooks/auth";
@@ -11,7 +11,7 @@ import './WaitingRoom.css';
 
 function WaitingRoom() {
   useEffect(() => {
-    socket.emit('join-queue')
+    socket.emit('join-queue', localStorage.getItem("token"))
     return () => socket.emit('leave-queue')
   }, []);
   let navigate = useNavigate();
@@ -24,7 +24,7 @@ function WaitingRoom() {
 
   socket.on("start_game", (value) => {
     console.log(value);
-
+    localStorage.setItem("players_ingame", JSON.stringify(value));
     navigate("/App");
   })
   

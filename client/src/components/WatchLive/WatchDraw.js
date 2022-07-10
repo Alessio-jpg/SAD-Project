@@ -5,18 +5,24 @@ import './WatchDraw.css'
 import $ from 'jquery';
 
 
-const WatchLiveArea = ({onClearLines, clearLines}) => {
+const WatchLiveArea = (props, {onClearLines, clearLines}) => {
     const [lines, setLines] = useState([]);
     const width = $('.single-live-screen').width();
 
+    var name = props.name;
+    var id = props.id;
+    
+
     useEffect(() => {
         //loadImage();
-    }, [clearLines])
+        setLines(props.lines);
+        console.log("aggiorno le lines");
+    }, [props.lines])
 
 
     return (
         <>
-            <h5 className='user-name'>Name</h5>
+            <h5 className='user-name'>{name}</h5>
             <div className= "watch-live-container">
                 <Stage
                     width={width}
@@ -27,8 +33,8 @@ const WatchLiveArea = ({onClearLines, clearLines}) => {
                         {lines.map((line, i) => (
                             <Line
                             key={i}
-                            points={line.points}
-                            stroke="#fff"
+                            points={line.points.map(function(x) {return x * width})}
+                            stroke="#000"
                             strokeWidth={2}
                             tension={0.5}
                             lineCap="round"

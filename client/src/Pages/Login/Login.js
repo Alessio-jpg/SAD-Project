@@ -4,6 +4,7 @@ import Axios from "axios";
 import logo from '../../assets/home-image.png';
 
 import "./Login.css";
+import { socket } from "../../socket";
 function Login() {
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -28,6 +29,7 @@ function Login() {
         } else {
             console.log(response.data);
             localStorage.setItem("token", response.data.token);
+            socket.emit("login-event", response.data.token);
             setLoginStatus(true);
             navigate("/HomePage");
         }

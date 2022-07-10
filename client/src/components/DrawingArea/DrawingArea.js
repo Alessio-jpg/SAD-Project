@@ -29,12 +29,13 @@ const DrawingArea = ({onClearLines, clearLines}) => {
     const clearDrawing = (e) => {
         isDrawing.current = false;
         setLines([]);
+        socket.emit("upload-event", []);
     };
 
     const handleMouseDown = (e) => {
         isDrawing.current = true;
         const pos = e.target.getStage().getPointerPosition();
-        setLines([...lines, { points: [pos.x, pos.y] }]);
+        setLines([...lines, { points: [pos.x/width, pos.y/width] }]);
     };
     
     const handleMouseMove = (e) => {
@@ -50,12 +51,14 @@ const DrawingArea = ({onClearLines, clearLines}) => {
         
         if(lastLine) {
             // add point
-            lastLine.points = lastLine.points.concat([point.x, point.y]);
+            lastLine.points = lastLine.points.concat([point.x/width, point.y/width]);
                 
             // replace last
             lines.splice(lines.length - 1, 1, lastLine);
             setLines(lines.concat());
         }
+
+        socket.emit("upload-event", lines);
         
     };
     
@@ -81,7 +84,7 @@ const DrawingArea = ({onClearLines, clearLines}) => {
                         {lines.map((line, i) => (
                             <Line
                             key={i}
-                            points={line.points}
+                            points={line.points.map(function(x) {return x * width})}
                             stroke="#fff"
                             strokeWidth={2}
                             tension={0.5}
