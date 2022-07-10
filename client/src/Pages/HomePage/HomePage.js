@@ -15,7 +15,11 @@ function HomePage() {
 
 
   const userLoggedIn = () => {
-      Axios.get("http://localhost:4000/isLogged").then((response) =>{
+      Axios.get("http://localhost:4000/isLogged", {        
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      }).then((response) => {
           if(!response.data.loggedIn) {
               console.log(response);
               navigate("/");

@@ -17,6 +17,6 @@
     "firebase-admin": "^11.0.0",
     "firestore-store": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1"
+    "node-cron": "^3.0.1"
   }
 }
