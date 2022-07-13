@@ -3,6 +3,8 @@ class User {
       this.uuid = id;
       this.username = username;
       this.socket = socket;
+
+      this.canSubmit = true;
     }
   }
 

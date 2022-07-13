@@ -31,6 +31,22 @@ class Game {
     getGameRoom() {
         return "game-room_" + this.id;
     }
+
+    getWinners() {
+        var winners = [];
+        var winning_score = -1000;
+        this.users.forEach(u => {
+            if(winning_score < this.scores[u.uuid]) {
+                winning_score = this.scores[u.uuid]
+                winners = [u]
+            }
+            else if(winning_score == this.scores[u.uuid]) {
+                winners.push(u)
+            }
+            
+          });
+        return winners;
+    }
   }
 
 
