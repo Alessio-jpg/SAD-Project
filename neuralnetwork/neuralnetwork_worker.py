@@ -31,8 +31,8 @@ def load(times):
 	for _ in range(times):
 		enqueue(pts)
 
-def push_redis(data):
-	r.lpush('queue:predictions', json.dumps(data))
+def push_redis(queue_id,data):
+	r.lpush('queue:predictions:' + queue_id, json.dumps(data))
 
 def pop_redis(timeout=0):
 	data = r.blpop(['queue:images'], timeout=timeout)
@@ -48,8 +48,8 @@ def gen_img(pts):
 		cur_x = []
 		cur_y = []
 		for x,y in zip(pt[::2],pt[1::2]):
-			x = int(x/SIZE * BASE_SIZE)
-			y = int(y/SIZE * BASE_SIZE)
+			x = int(x * BASE_SIZE)
+			y = int(y * BASE_SIZE)
 			cur_x.append(x)
 			cur_y.append(y)
 
@@ -116,12 +116,13 @@ def main():
 			raise
 
 		identifier = data["id"]
+		queue_id = data["queue_id"]
 		data_pts = data["payload"]
 		# identifier = 0
 		# data_pts = data
 
-		print(identifier)
-		print(data_pts)
+		print(f"{identifier=}")
+		print(f"{queue_id=}")
 
 		img = gen_img(data_pts)
 
@@ -146,7 +147,9 @@ def main():
 			"top3": top3cats[2]
 		}
 
-		push_redis(response)
+		print(response)
+
+		push_redis(queue_id, response) 
 
 
 if __name__ == '__main__':
