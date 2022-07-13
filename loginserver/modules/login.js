@@ -37,7 +37,7 @@ const login = async(username, password, req, res) => {
             const token = createToken(userData.id, userData.username);
             req.session.user = userData;
             addUserSession(userData.username, userData.id);
-            res.json({auth: true, token: token});
+            res.json({auth: true, token: token, uuid: userData.id});
         } else {
             res.json({auth: false, message: "Username o Password errata"});
         }
