@@ -37,8 +37,9 @@
     padding: 30px;
 }
 
-.login__container .logo {
+.login__container .logo img {
     margin-bottom: 20px;
+    width: 310px;
 }
 
 .login__textBox {

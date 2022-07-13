@@ -13,6 +13,11 @@
     margin-top: 10px;
     margin: auto;
 }
+.home-area .home-container .logo{
+    width: 310px;
+    margin: auto;
+}
+
 .home-area .home-container .logo img{
     width: 100%;
 }
