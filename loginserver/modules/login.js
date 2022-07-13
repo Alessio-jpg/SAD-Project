@@ -39,10 +39,10 @@ const login = async(username, password, req, res) => {
             addUserSession(userData.username, userData.id);
             res.json({auth: true, token: token, uuid: userData.id});
         } else {
-            res.json({auth: false, message: "Username o Password errata"});
+            res.json({auth: false, message: "Wrong Username or Password"});
         }
     } else {
-        res.json({auth: false, message: "Già stai loggat o frat stut t cos"});
+        res.json({auth: false, message: "User already logged-in"});
         console.log("Login sta già");
     }
 };

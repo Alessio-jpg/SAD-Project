@@ -40,9 +40,9 @@ app.get("/isLogged", async(req, res) => {
     const token = req.headers["x-access-token"];
     const isLog = await isLogged(token);
     if(isLog) {
-        res.json({loggedIn: true, message: "e comm stai fort"});
+        res.json({loggedIn: true, message: "user logged"});
     } else {
-        res.json({loggedIn: false, message: 'iesc for'});
+        res.json({loggedIn: false, message: 'user not logged'});
     }
 });
 
