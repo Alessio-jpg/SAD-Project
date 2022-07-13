@@ -1,6 +1,7 @@
 import Drawing from "./drawing"
 import MatchedWord from "./matchedWord";
 import Observable from "./observable";
+import Partecipation from "./partecipation";
 import WatchLive from "./watchLive";
 import WordToDraw from "./wordToDraw";
 
@@ -19,6 +20,8 @@ export default class Game extends Observable {
         this.watchLive4 = new WatchLive();
 
         this.isStart = false;
+
+        this.partecipation = new Partecipation();
 
     }
 
@@ -81,6 +84,10 @@ export default class Game extends Observable {
         this.watchLive4.subscribeWatchLive(observer);
     }
 
+    subscribePartecipation(observer) {
+        this.partecipation.subscribePartecipation(observer);
+    }
+
     unsubscribeWordToDrow1() {
         this.wordToDraw1.unsubscribeWordToDrow();
     }
@@ -107,6 +114,10 @@ export default class Game extends Observable {
 
     unsubscribeWatchLive4() {
         this.watchLive4.unsubscribeWatchLive();
+    }
+
+    unsubscribePartecipation() {
+        this.partecipation.unsubscribePartecipation();
     }
 
     updateWordToDrow1(data) {
@@ -137,5 +148,7 @@ export default class Game extends Observable {
         this.watchLive4.updateWatchLive(data);
     }
 
-
+    updatePartecipation(data) {
+        this.partecipation.updatePartecipation(data);
+    }
 }

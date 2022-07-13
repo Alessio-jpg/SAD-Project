@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000
 const User = require("./User.js");
 const Game = require('./Game.js');
 
-const PLAYERS_PER_GAME = 2;
+const PLAYERS_PER_GAME = 1;
 
 const app = express()
 const server = http.createServer(app)
