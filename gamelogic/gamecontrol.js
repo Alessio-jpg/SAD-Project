@@ -94,18 +94,15 @@ io.use(function(socket, next){
 
         socket.decoded = decoded;
 
-        console.log("DECODE: ");
-        console.log(decoded);
-
         var pass = false;
         players_ingame.forEach(p => {
           if(p.uuid == decoded.id) {
             p.socket = socket;
+
+            console.log(" >>>> {" + p.uuid + "} , {" + p.username + "}")
             pass = true;
           }
         });
-        console.log("INGAME")
-        console.log(players_ingame)
         if(pass) {
           next();
         }
@@ -143,6 +140,7 @@ io.on('connection', async (socket) => {
         console.log("Ricevute Lines")
 
         var u = findUserFromSocket(socket.id);
+        console.log(socket.id);
         console.log(u);
         if(u.canSubmit == true) {
           var msg = {
@@ -221,17 +219,36 @@ redis_subscribe(core.id , async (message, channel) => {
   
   var guess = pred["top1"];
   
-  var socket_id = findUserFromUUID(player_id).socket.id;
+  var cur_usr = findUserFromUUID(player_id);
+  var socket_id = cur_usr.socket.id;
+
+  var player_score = game.getPlayerScore(cur_usr.uuid);
+
+  var correct_guesses = [TOPICS[2*player_score], TOPICS[2*player_score+1]];
+
+  var guess_right = false;
+
+  correct_guesses.forEach(correct_guess => {
+      if(correct_guess == pred["top1"] || correct_guess == pred["top2"] || correct_guess == pred["top3"]) {
+        pred = correct_guess;
+        guess_right = true;
+      }
+  });
 
   console.log("Sending to player {" + player_id + ","+ socket_id +"}" + " the guess " + guess )
   io.to(socket_id).emit("neural-guess", guess);
-  
 
-  /*
-  if(guess is right ) {
-    io.to(game_room).emit("update-score", {"player": player.id, "points": x+1})
+  if(guess_right) {
+    console.log("The player guess is right, player ", player_id, "'s score is ", (player_score+1))
+    cur_usr.socket.emit("update-score", player_score)
+
+    cur_usr.socket.emit("drawing-topics", {
+      topic1: TOPICS[2*(player_score+1)], 
+      topic2: TOPICS[2*(player_score+1)+1]
+    })
+
+    game.incrementPlayerScore(cur_usr.uuid);
   }
-  */
 });
 
 var payload = JSON.stringify({id: process.argv[2].substring(3), 
@@ -255,8 +272,29 @@ delay(1000 * TIME_DURATION)
 
   var payload = [];
   winners.forEach(u => {
+    u.socket.emit("winning-event")
     payload.push(u.username)
   });
+
+  var losers = game.users;
+
+  losers = losers.filter((u) => {
+    for (let index = 0; index < winners.length; index++) {
+      if(u.uuid == winners[index].uuid) {
+        return false;
+      }
+    }
+    return true;
+  })
+
+  console.log("LOSERS:")
+  console.log(losers)
+
+  losers.forEach(u => {
+    u.socket.emit("losing-event")
+  });
+
+
   core.ipc("game_end", {winners: payload})
 })
 
