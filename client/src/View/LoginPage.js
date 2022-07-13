@@ -57,11 +57,6 @@ export default class LoginPage extends React.Component {
         return (
             <>
             {this.state.userLogged && <Navigate to="/HomePage" replace />}
-            <div id="winning_screen" className="overlay">
-                <div className="overlay-content">
-                    Hai Vinto!
-                </div>
-            </div>
             <div className="login">
                 <div className="login__container">
                 <div className="logo">

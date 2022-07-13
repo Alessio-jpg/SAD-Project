@@ -34,15 +34,17 @@ export default class WordToDrawArea extends React.Component {
     render() {
         return(
             <div className='words-area'>
-                <div className='words-container'>
-                    <div className='first-word'>
-                        <p>{this.state.firstWord}</p>
-                    </div>
-                    <div className='choose'>
-                        <p>O</p>
-                    </div>
-                    <div className='second-word'>
-                        <p>{this.state.secondWord}</p>
+                <div className="word-content">
+                    <div className='words-container'>
+                        <div className='first-word'>
+                            <p>{this.state.firstWord}</p>
+                        </div>
+                        <div className='choose'>
+                            <p>O</p>
+                        </div>
+                        <div className='second-word'>
+                            <p>{this.state.secondWord}</p>
+                        </div>
                     </div>
                 </div>
             </div>            

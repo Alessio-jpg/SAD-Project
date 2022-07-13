@@ -18,27 +18,8 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
 }
 
-.matchedWord-container .legend {
-    position: relative;
-    top: -10px;
-    width: 120px;
-    margin: auto;
-    font-size: 13px;
-    overflow: hidden;
-    background-color: #fff;
-    color: #000;
-    margin-bottom: -10px;
-    text-align: center;
-    font-weight: bold;
-    font-style: italic;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-}
 
 @media screen and (max-width: 480px) {
-    .matchedWord-container .legend {
-        font-size: 10px;
-        margin-bottom: -8px;
-    }
 
     .matchedWord-container {
         width: 80%;

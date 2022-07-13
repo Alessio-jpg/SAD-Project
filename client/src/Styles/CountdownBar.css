@@ -11,6 +11,11 @@
 
 .progress-bar {
     background-color: #f4d151;
+
+}
+
+.bar-container {
+    margin-top: 25px;
 }
 
 .progress-bar-striped {
