@@ -4,8 +4,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import PageController from './View/PageController';
 import Controller from './Controller/Controller';
-import './assets/fonts/3DHandDrawns.ttf';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const controllore = new Controller();

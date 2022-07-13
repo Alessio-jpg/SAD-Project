@@ -11,10 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-@font-face {
-  font-family: "3dHand";
-  src: local("3dHand"),
-   url("./assets/fonts/3DHandDrawns.ttf") format("truetype");
-  font-weight: bold;
-}

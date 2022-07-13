@@ -28,6 +28,7 @@ export default class MatchedWord extends React.Component {
     render() {
         return(
             <div className='matchedWord-container'>
+                
                 <div className='matchedWord'>
                     <p>{this.state.matchedWord}</p>
                 </div>

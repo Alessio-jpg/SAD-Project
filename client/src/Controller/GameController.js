@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default class GameController {
     constructor(game, player, socket) {
         this.game = game;
@@ -107,10 +105,6 @@ export default class GameController {
         this.game.subscribeWatchLive4(observer);
     }
 
-    subscribePartecipation(observer) {
-        this.game.subscribePartecipation(observer);
-    }
-
     unsubscribeWordToDrow1() {
         this.game.unsubscribeWordToDrow1();
     }
@@ -137,10 +131,6 @@ export default class GameController {
 
     unsubscribeWatchLive4() {
         this.game.unsubscribeWatchLive4();
-    }
-
-    unsubscribePartecipation() {
-        this.game.unsubscribePartecipation();
     }
 
     updateWordToDrow1(value) {
@@ -170,10 +160,6 @@ export default class GameController {
     updateWatchLive4(data) {
         this.game.updateWatchLive4(data);
     }
-    
-    updatePartecipation(data) {
-        this.game.updatePartecipation(data);
-    }
 
     neural_guess() {
         return
@@ -188,9 +174,5 @@ export default class GameController {
         console.log("connessione in corso . . ")
         var JWT = localStorage.getItem("token")
         this.socket.connect(JWT, addr);
-    }
-
-    end_game() {
-        $('.overlay').width('100%');
     }
 }

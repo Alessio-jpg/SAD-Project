@@ -165,10 +165,6 @@ export default class Controller {
         this.gameController.subscribeWatchLive4(observer);
     }  
 
-    subscribePartecipation(observer) {
-        this.gameController.subscribePartecipation(observer);
-    }
-
     unsubscribeWordToDrow1() {
         this.gameController.unsubscribeWordToDrow1();
     }
@@ -195,11 +191,7 @@ export default class Controller {
     
     unsubscribeWatchLive4() {
         this.gameController.unsubscribeWatchLive4();
-    }   
-    
-    unsubscribePartecipation() {
-        this.gameController.unsubscribePartecipation();
-    }
+    }    
 
     updateWordToDrow1(value) {
         this.gameController.updateWordToDrow1(value);
@@ -228,10 +220,6 @@ export default class Controller {
     updateWatchLive4(value) {
         this.gameController.updateWatchLive4(value);
     }
-
-    updatePartecipation(data) {
-        this.gameController.updatePartecipation(data);
-    }
     
     neural_guess() {
         this.gameController.neural_guess();
@@ -245,7 +233,5 @@ export default class Controller {
         this.gameController.connect(addr, localStorage.getItem("token"))
     }
 
-    end_game() {
-        this.gameController.end_game();
-    }
+
 }
