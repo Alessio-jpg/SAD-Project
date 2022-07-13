@@ -149,6 +149,7 @@ export default class Game extends Observable {
     }
 
     updatePartecipation(data) {
+        console.log("GAME:", data)
         this.partecipation.updatePartecipation(data);
     }
 }

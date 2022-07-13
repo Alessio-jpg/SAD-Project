@@ -7,12 +7,10 @@ export default class GameScore extends React.Component {
         super(props);
 
         this.state = {
-            count: 0
+            count: 0,
+            name: ""
         }
 
-        this.name = props.name;
-
-        this.name = props.name;
         this.id = props.id;
     }
 
@@ -20,13 +18,20 @@ export default class GameScore extends React.Component {
         this.width = $('.single-live-screen').width();
         this.setState({
             count: this.props.count,
+            name: this.props.name
         })
     }
 
     componentDidUpdate(prevPops, prevState) {
         if(this.props.count !== prevPops.count) {
             this.setState({
-                lines: this.props.count,
+                count: this.props.count,
+            })
+        }
+
+        if(this.props.name !== prevPops.name) {
+            this.setState({
+                name: this.props.name,
             })
         }
     }
@@ -34,7 +39,7 @@ export default class GameScore extends React.Component {
     render() {
         return(
             <>
-                <h5 className='user-name'>{this.name}</h5>
+                <h5 className='user-name'>{this.state.name}</h5>
                 <div id="score-user" className= "watch-live-container">
                     <p>{this.state.count}</p>
                 </div>

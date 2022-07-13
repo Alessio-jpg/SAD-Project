@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import '../Styles/HomePage.css';
 
 export default class HomePage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.controller = props.controller;
     }
 
     render() {
@@ -16,7 +17,7 @@ export default class HomePage extends React.Component {
                     <img src={imm}></img>
                 </div>
                 <div className="username">
-                    <p>Username</p>
+                    <p>{this.controller.getUsername()}</p>
                 </div>
                 <div className="first-button">
                     <Link to="/WaitingRoom">

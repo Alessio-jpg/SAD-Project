@@ -29,11 +29,9 @@ export default class MatchedWord extends React.Component {
         return(
             <div className='matchedWord-container'>
                 <div className='matchedWord'>
-                    <p>{this.state.matchedWord}</p>
+                    <p>{this.state.matchedWord.replace("_"," ")}</p>
                 </div>
             </div>            
         )
     }
 }
-
-// <p className='legend'>Hai disegnato</p>

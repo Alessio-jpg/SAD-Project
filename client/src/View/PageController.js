@@ -19,7 +19,7 @@ export default class PageController extends React.Component {
             <HashRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage controller = {this.controller} />} />
-                    <Route path="/HomePage" element={<HomePage />} />
+                    <Route path="/HomePage" element={<HomePage controller = {this.controller} />} />
                     <Route path="/Register" element={<RegisterPage controller = {this.controller}/>} />
                     <Route path="/GamePage" element={<GamePage controller = {this.controller}/>} />
                     <Route path="/ScoreBoard" element={<ScoreboardPage controller = {this.controller} />} />

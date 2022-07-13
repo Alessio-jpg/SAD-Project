@@ -29,11 +29,14 @@ export default class GamePage extends React.Component {
     this.controller = props.controller;
     
     this.player_data = JSON.parse(localStorage.getItem("players_ingame"));
+
+  
   }
   
   
   componentDidMount() {
     //this.controller.neural_guess();
+    
     this.controller.subscribeWordToDrow1(this.setWordToDrow1.bind(this));
     this.controller.subscribeWordToDrow2(this.setWordToDrow2.bind(this));
     this.controller.subscribeMatchedWord(this.setMatchedWord.bind(this));
@@ -42,7 +45,8 @@ export default class GamePage extends React.Component {
     this.controller.subscribeWatchLive3(this.setLine3.bind(this));
     this.controller.subscribeWatchLive4(this.setLine4.bind(this));
     this.controller.subscribePartecipation(this.setGameCount.bind(this));
-    
+
+    // -----
     var usernames = [this.controller.getUsername()]
     var ids = [this.controller.getPlayerID()]
 
@@ -61,9 +65,11 @@ export default class GamePage extends React.Component {
     });
     console.log("USERNAMES");
     console.log(usernames);
+    // -----
+    
     this.scaleWidth();
     
-    this.controller.end_game();
+
     //this.controller.other_player_lines_update(this.state.id); //forse non va
   }
   
@@ -103,6 +109,7 @@ export default class GamePage extends React.Component {
   }
   
   setLine2(line) {
+    console.log(line)
     this.setState({
       line2: line
     })
@@ -146,11 +153,12 @@ export default class GamePage extends React.Component {
   }
   
   render() {
+    console.log(this.state.name[0])
     return(
       <>
       <div id="winning_screen" className="overlay">
         <div className="overlay-content">
-            Hai Vinto!
+            <p>Hai Vinto!</p>
             <div className="exit-button">
                 <Link to="/HomePage">
                     <button className="button-end-game">Exit</button>
@@ -182,7 +190,7 @@ export default class GamePage extends React.Component {
       </div>
       <div className="third-colum">
           <div className="App drawing-area">
-            <DrawingArea controller = {this.controller} onClearLines={() => {alert("Test");}}/>
+            <DrawingArea controller = {this.controller} /*onClearLines={() => {alert("Test");}}*/ />
           </div>
       </div>
       </div> 

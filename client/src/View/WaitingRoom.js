@@ -32,7 +32,8 @@ export default class WaitingRoom extends React.Component {
     
     
     componentWillUnmount() {
-        this.controller.dequeue();
+        console.log("FOCUS?")
+        //this.controller.dequeue();
         this.controller.unsubscribeLobbyObserve();
         this.controller.unsubscribeIsStartObserve();
     }

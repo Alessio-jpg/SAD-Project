@@ -79,7 +79,7 @@ export default class Controller {
     updateLobbyCount(value) {
         this.lobbyController.updateLobbyCount(value);
     }
-    /*
+    
     setIsStart(val) {
         this.gameController.setIsStart(val);
     }
@@ -87,7 +87,7 @@ export default class Controller {
     getIsStart() {
         return this.gameController.getIsStart();
     }
-    */
+    
 
     subscribeIsStartObserve(observer) {
         this.gameController.subscribeIsStartObserve(observer);
@@ -145,8 +145,8 @@ export default class Controller {
         this.gameController.subscribeMatchedWord(observer);
     }
 
-    updateWatchLive(message) {
-        this.gameController.updateWatchLive(message);
+    updateWatchLive(id, lines) {
+        this.gameController.updateWatchLive(id, lines);
     }
 
     subscribeWatchLive1(observer) {
@@ -245,7 +245,7 @@ export default class Controller {
         this.gameController.connect(addr, localStorage.getItem("token"))
     }
 
-    end_game() {
-        this.gameController.end_game();
+    end_game(win) {
+        this.gameController.end_game(win);
     }
 }

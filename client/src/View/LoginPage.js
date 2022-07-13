@@ -60,7 +60,7 @@ export default class LoginPage extends React.Component {
             <div className="login">
                 <div className="login__container">
                 <div className="logo">
-                    <img src={logo}></img>
+                    <img src={logo} />
                 </div>
                 <input
                     type="text"

@@ -37,13 +37,13 @@ export default class WordToDrawArea extends React.Component {
                 <div className="word-content">
                     <div className='words-container'>
                         <div className='first-word'>
-                            <p>{this.state.firstWord}</p>
+                            <p>{this.state.firstWord.replace("_"," ")}</p>
                         </div>
                         <div className='choose'>
-                            <p>O</p>
+                            <p>or</p>
                         </div>
                         <div className='second-word'>
-                            <p>{this.state.secondWord}</p>
+                            <p>{this.state.secondWord.replace("_"," ")}</p>
                         </div>
                     </div>
                 </div>

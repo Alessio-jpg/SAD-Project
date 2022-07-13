@@ -36,7 +36,7 @@ export default class GameController {
         return this.game.getDrawing();
     }
 
-    updateWatchLive(message) {
+    updateWatchLive(player_id, lines) {
         var player_data = JSON.parse(localStorage.getItem("players_ingame"));
         var id = [];
 
@@ -53,17 +53,17 @@ export default class GameController {
                 this.updateWatchLive1(message.payload);
             }
             */
-            if(message.id === id[0]) {
+            if(player_id === id[0]) {
                 console.log("Aggiorno vista di 2" )
-                this.updateWatchLive2(message.payload);
+                this.updateWatchLive2(lines);
             }
-            if(message.id === id[1]) {
+            if(player_id === id[1]) {
                 console.log("Aggiorno vista di 3" )
-                this.updateWatchLive3(message.payload);
+                this.updateWatchLive3(lines);
             }
-            if(message.id === id[2]) {
+            if(player_id === id[2]) {
                 console.log("Aggiorno vista di  4" )
-                this.updateWatchLive4(message.payload);
+                this.updateWatchLive4(lines);
             }
     }
 
@@ -190,7 +190,13 @@ export default class GameController {
         this.socket.connect(JWT, addr);
     }
 
-    end_game() {
+    end_game(win) {
+        if(win) {
+          $('.overlay-content p').text("You win!");
+        } else {
+          $('.overlay-content p').text("You lose!");
+        }
         $('.overlay').width('100%');
-    }
+      }
+
 }

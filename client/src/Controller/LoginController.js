@@ -24,7 +24,6 @@ export default class LoginController {
                 console.log(response.data);
                 localStorage.setItem("token", response.data.token);
                 this.socket.connect(response.data.token);
-                this.socket.login_connect(response.data.token);
                 this.giocatore.setUsername(username);
                 this.giocatore.setPlayerID(response.data.uuid);
                 this.giocatore.setIsLogged(true);

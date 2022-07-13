@@ -31,10 +31,11 @@ export default class DrawingArea extends React.Component {
         this.width = $('.drawing-area').width();
     }
 
-
+    /*
     componentWillUnmount() {
         this.props.onClearLines();
     }
+    */
 
 
     clearDrawing() {
