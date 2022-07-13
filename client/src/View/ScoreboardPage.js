@@ -101,7 +101,7 @@ export default class ScoreboardPage extends React.Component {
                         {this.state.username.map((username, index) => (
                             <div className="flex" key={index}>
                                 <div className="item">
-                                    <img src={imm} alt="" />             
+                                    <p className="position">{index}</p>             
                                 </div>
                                 <div className="info">
                                     <p>{username}</p>
