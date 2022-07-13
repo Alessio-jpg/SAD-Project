@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './main/App';
 import reportWebVitals from './reportWebVitals';
-import Routing from './components/Routing';
+import PageController from './View/PageController';
+import Controller from './Controller/Controller';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const controllore = new Controller();
+console.log("Instanzio nuovo controller");
 root.render(
   <React.StrictMode>
-    <Routing/>
+    <PageController controller = {controllore}/>
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

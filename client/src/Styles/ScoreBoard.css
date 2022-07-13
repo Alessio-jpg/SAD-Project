@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* > * {
+    font-family: "Poppins", cursive;
+    margin: 0;
+}
+
+:root{
+    --color-dark: #2C3131;
+    --color-light: #ffca45;
+}
+
+.score-area{
+    width: 100vw;
+    height: 100vh;
+}
+
+.score-area .board {
+    width: 50%;
+    margin: auto;
+}
+
+.score-area .board .leaderboard{
+    margin-bottom: 1em;
+    font-size: 40px;
+    font-style: oblique;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.score-area .board .leaderboard p {
+    background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=f4d151);
+}
+
+.score-area .board .duration{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.score-area .duration > button{
+    border: 1px solid var(--color-light);
+    padding: .5em 2em;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.score-area .board .duration > button:hover{
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+.active{
+    background-color: var(--color-dark)!important;
+    color: var(--color-light);
+}
+
+.score-area .button-home {
+    width: 40%;
+    height: 10%;
+}
+
+.button-back {
+    width: 20%;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    color: rgb(20, 2, 2);
+    background-color: #fff;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#profile{
+    /* display: flex; */
+
+    margin-top: 3em;
+}
+
+#profile .flex:nth-child(2n){
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    text-align: left;
+    margin-bottom: 2em;
+    border-style: solid;
+    border-color:  #ffca45 black #ffca45 black;
+}
+
+#profile .flex:nth-child(2n+1){
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    text-align: left;
+    margin-bottom: 2em;
+    border-style: solid;
+    border-color:   black #ffca45  black #ffca45;
+}
+
+#profile .flex .item{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+#profile .flex img{
+    width: 50%;
+    border-radius: 50%;
+}
+
+#profile .flex .info{
+   padding: 1em;
+   font-size: 30px;
+   margin-right: 30px;
+}
+
+#profile .flex .score{
+    padding: 1em;
+    font-size: 30px;
+    margin-right: 60px;
+ }
