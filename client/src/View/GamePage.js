@@ -1,13 +1,11 @@
 import React from "react";
-import CountDownBar from "../Components/CountdownBar";
-import WordToDrawArea from "../Components/WordToDrawArea";
-import DrawingArea from "../Components/DrawingArea";
-import MatchedWord from "../Components/MatchedWord";
-import WatchLive from "../Components/WatchLive";
+import CountDownBar from "../Components1/CountdownBar";
+import WordToDrawArea from "../Components1/WordToDrawArea";
+import DrawingArea from "../Components1/DrawingArea";
+import MatchedWord from "../Components1/MatchedWord";
+import WatchLive from "../Components1/WatchLive";
 import $ from 'jquery';
 import '../Styles/App.css'; 
-import GameScore from "../Components/GameScore";
-import { Link } from "react-router-dom";
 
 export default class GamePage extends React.Component {
   constructor(props) {
@@ -22,8 +20,7 @@ export default class GamePage extends React.Component {
       line4: [],
       wordToDrow1: "",
       wordToDrow2: "",
-      matchedWord: "",
-      gameCount: 0,
+      matchedWord: ""
     }
     
     this.controller = props.controller;
@@ -41,7 +38,6 @@ export default class GamePage extends React.Component {
     this.controller.subscribeWatchLive2(this.setLine2.bind(this));
     this.controller.subscribeWatchLive3(this.setLine3.bind(this));
     this.controller.subscribeWatchLive4(this.setLine4.bind(this));
-    this.controller.subscribePartecipation(this.setGameCount.bind(this));
     
     var usernames = [this.controller.getUsername()]
     var ids = [this.controller.getPlayerID()]
@@ -63,7 +59,6 @@ export default class GamePage extends React.Component {
     console.log(usernames);
     this.scaleWidth();
     
-    this.controller.end_game();
     //this.controller.other_player_lines_update(this.state.id); //forse non va
   }
   
@@ -75,7 +70,6 @@ export default class GamePage extends React.Component {
     this.controller.unsubscribeWatchLive2();
     this.controller.unsubscribeWatchLive3();
     this.controller.unsubscribeWatchLive4();
-    this.controller.unsubscribePartecipation();
   }
   
   setWordToDrow1(word) {
@@ -119,12 +113,6 @@ export default class GamePage extends React.Component {
       line4: line
     })
   }
-
-  setGameCount(count) {
-    this.setState({
-      gameCount: count
-    })
-  }
   
   scaleWidth() {
     var widthDrawingArea = $('.drawing-area').width();
@@ -147,46 +135,32 @@ export default class GamePage extends React.Component {
   
   render() {
     return(
-      <>
-      <div id="winning_screen" className="overlay">
-        <div className="overlay-content">
-            Hai Vinto!
-            <div className="exit-button">
-                <Link to="/HomePage">
-                    <button className="button-end-game">Exit</button>
-                </Link>
-            </div>
-        </div>
-      </div>
       <div className='main-container'>
-      <div className="first-colum">
-        <div className='live-drawing-area'>
-        <div className='single-live-screen'>
-        < GameScore id = {this.state.id[0]} name = {this.state.name[0]} count = {this.state.gameCount}/>
-        </div>
-        <div className='single-live-screen'>
-        < WatchLive id = {this.state.id[1]} name = {this.state.name[1]} lines = {this.state.line2}/>
-        </div>
-        <div className='single-live-screen'>
-        < WatchLive id = {this.state.id[2]} name = {this.state.name[2]} lines = {this.state.line3}/>
-        </div>
-        <div className='single-live-screen'>
-        < WatchLive id = {this.state.id[3]} name = {this.state.name[3]} lines = {this.state.line4}/>
-        </div>
-        </div>
-        < CountDownBar />
+      <div>
+      <div className='live-drawing-area'>
+      <div className='single-live-screen'>
+      < WatchLive id = {this.state.id[0]} name = {this.state.name[0]} lines = {this.state.line1}/>
       </div>
-      <div className="second-colum">
-        <WordToDrawArea firstWord = {this.state.wordToDrow1} secondWord = {this.state.wordToDrow2} />
-        < MatchedWord matchedWord = {this.state.matchedWord}/>
+      <div className='single-live-screen'>
+      < WatchLive id = {this.state.id[1]} name = {this.state.name[1]} lines = {this.state.line2}/>
       </div>
-      <div className="third-colum">
-          <div className="App drawing-area">
-            <DrawingArea controller = {this.controller} onClearLines={() => {alert("Test");}}/>
-          </div>
+      <div className='single-live-screen'>
+      < WatchLive id = {this.state.id[2]} name = {this.state.name[2]} lines = {this.state.line3}/>
+      </div>
+      <div className='single-live-screen'>
+      < WatchLive id = {this.state.id[3]} name = {this.state.name[3]} lines = {this.state.line4}/>
+      </div>
+      </div>
+      < CountDownBar />
+      </div>
+      <div className='word-container'>
+      <WordToDrawArea firstWord = {this.state.wordToDrow1} secondWord = {this.state.wordToDrow2} />
+      < MatchedWord matchedWord = {this.state.matchedWord}/>
+      </div>
+      <div className="App drawing-area">
+      <DrawingArea controller = {this.controller} onClearLines={() => {alert("Test");}}/>
       </div>
       </div> 
-      </>
       )
     }
   }

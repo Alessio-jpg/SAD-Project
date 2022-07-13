@@ -1,3 +1,45 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h1 {
+  margin: 10% 33%;
+}
 
 .drawing-area {
   width: 100%;
@@ -12,42 +54,16 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 25% 15% 60%;
+  grid-template-rows: 25% 25% 50%;
 }
 
 .live-drawing-area {
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin-left: 2%;
   display: grid;
-  grid-template-columns: 23% 23% 23% 23%;
+  grid-template-columns: 25% 25% 25% 25%;
   column-gap: 2%;
-  margin: auto;
-}
-
-.first-colum {
-  width: 100vw;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 88% 12%;
-}
-
-.second-colum {
-  width: 100vw;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 50% 30%;
-  row-gap: 5%;
-  margin-top: 15px;
-}
-
-.third-colum {
-  width: 100vw;
-  height: 100%;
-  background-color: #fff;
-  display: flex;
-  margin-top: 17px;
-  margin: auto;
 }
 
 .single-live-screen {
@@ -56,64 +72,31 @@
   margin: auto;
 }
 
-.overlay {
+.word-container {
+  width: 100%;
   height: 100%;
-  width: 0;
-  position: fixed;
-
-  z-index: 1;
-  left: 0;
-  right: 0;
-
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow-x: hidden;
-  transition: 0.5s;
+  display: grid;
+  grid-template-rows: 50% 30%;
+  row-gap: 5%;
+  margin-top: 15px;
 }
 
-.overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center;
-
-  font-size: 40px;
-  color: #ffca45;
-}
-
-.exit-button {
-    width: 50%;
-    height: 10%;
-    margin: auto;
-    margin-top: 40px;
-}
-
-.button-end-game {
-  width: 100%;
-  height: 50px;
-  font-size: 15px;
-  border: none;
-  color: rgb(14, 1, 1);
-  background-color: #ffca45;
-  font-weight: bold;
-  border-radius: 20px;
-  transition: all .3s;
-  z-index: 2;
-  -webkit-box-shadow: 7px 0px 0px 3px #0f0601; 
-  box-shadow: 6px 3px 0px 0px #0f0601;
-}
-
-@media screen and (max-width: 480px ) {
-  .live-drawing-area {
-    width: 95%;
-  }
-
+@media screen and (min-width: 1025px) {
   .main-container {
-    grid-template-rows: 15% 35% 50%;
+    grid-template-rows: 30% 20% 50%;
   }
 
-  .second-colum {
-    margin: auto;
-    height: 50%;
+  .single-live-screen {
+    width: 50%;
+  }
+  .word-container {
+    grid-template-rows: 45% 30%;
+    row-gap: 15%;
   }
 }
+
+
+
+
+
 
