@@ -5,7 +5,7 @@ const server = require("http").createServer()
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
-  } 
+} 
 
 var started_games = []
 
@@ -18,7 +18,7 @@ const master = new WseCCMaster({server})
 
 master.use_ssl = false
 
-master.logging = true
+master.logging = false
 
 master.listen_demons({port:5001}, on_demon_auth)
 
@@ -26,12 +26,12 @@ master.on("c:game_start", (core, payload) => {
     console.log(payload)
     payload = JSON.parse(payload)
     started_games[payload.id] = payload.port
-
-
+    
+    
     if(payload.address == "::") {
         payload.address = "localhost"
     }
-
+    
     console.log("PORTAAAAAAAAAAAA\n" + payload.address + ":" + payload.port)
 })
 
@@ -42,7 +42,7 @@ master.on("c:game_end", (core, payload) => {
     else {
         console.log("game_"+ core + " has ended, " + payload.winners + " won!");
     }
-
+    
     master.despawn_core(core)
 })
 
@@ -63,20 +63,20 @@ async function spawn_game(game_id, player_data) {
         game_id,
         "./gamecontrol.js",
         {debug: false, data: JSON.stringify(player_data)}
-    )
-
-    while(!started_games[game_id]) {
-        await delay(200);
+        )
+        
+        while(!started_games[game_id]) {
+            await delay(200);
+        }
+        
+        console.log(master.cores[game_id])
+        
+        return started_games[game_id]
     }
-
-    console.log(master.cores[game_id])
-
-    return started_games[game_id]
-}
-
-setInterval(()=>{master.distribute_cores(1)},100)
-
-console.log("master started")
-
-
-module.exports = {define_master_event, spawn_game}
+    
+    setInterval(()=>{master.distribute_cores(1)},100)
+    
+    console.log("master started")
+    
+    
+    module.exports = {define_master_event, spawn_game}

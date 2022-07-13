@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000
 const User = require("./User.js");
 const Game = require('./Game.js');
 
-const PLAYERS_PER_GAME = 1;
+const PLAYERS_PER_GAME = 4;
 
 const app = express()
 const server = http.createServer(app)
@@ -78,11 +78,6 @@ async function tryMatchmaking() {
     
     console.log("Creating game room, ID: " + game_room)
     
-    for (let i = 0; i < PLAYERS_PER_GAME; i++) {
-      players_socket[i].leave('queue-room');
-      players_socket[i].join(game_room);
-    }
-    
     players = users.filter(function(u) {
       for (let index = 0; index < players_socket.length; index++) {
         if(u.socket === players_socket[index].id)
@@ -105,8 +100,19 @@ async function tryMatchmaking() {
     console.log("AT port " + port)
     
     
-    io.to(game_room).emit("start_game",{players: message,game_server: "localhost:" + port})
+
+    
+    // Rimuovi gli user dalla coda
+    for (let i = 0; i < PLAYERS_PER_GAME; i++) {
+      players_socket[i].leave('queue-room');
+      console.log("Rimosso utente " + players_socket[i].id + " dalla coda perchè in partita")
+      io.to(players_socket[i].id).emit("start_game",{players: message,game_server: "localhost:" + port})
+      //players_socket[i].join(game_room);
+    }
+
     queue_count -= PLAYERS_PER_GAME
+
+    console.log("Players in queue: "+ queue_count)
     
     io.to("queue-room").emit('update-queue-count', queue_count)
     
