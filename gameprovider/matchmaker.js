@@ -3,7 +3,7 @@ const socketIo = require('socket.io')
 const http = require('http')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const {define_master_event, spawn_game} = require("./master.js")
+const {define_master_event, spawn_game} = require("./loadbalancer.js")
 
 const PORT = process.env.PORT || 5000
 

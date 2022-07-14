@@ -1,4 +1,7 @@
 {
+  "scripts" : {
+    "start": "node matchmaker.js"
+  },
   "dependencies": {
     "async-mutex": "^0.3.2",
     "cors": "^2.8.5",
