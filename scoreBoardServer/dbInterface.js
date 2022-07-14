@@ -8,7 +8,7 @@ admin.initializeApp({
 const db = admin.firestore();
 
 
-const viewScoreboard = (date) => {
+const viewScoreboard = (date, res) => {
 	var score = [];
     
     const query = db.collection('scoreboard').select(date, 'username').orderBy(date, 'desc');
@@ -26,7 +26,6 @@ const viewScoreboard = (date) => {
     }).catch(error => {
         console.log(error);
     })
-    return score;
 }
 
 

@@ -18,15 +18,11 @@ app.use(
 );
 
 const {viewScoreboard,selectUserScoreboard} = require("./dbInterface");
+const {updateScoreboard} = require("../gamelogic/dbInterface");
 
-app.post("/viewScoreboard", async (req, res) => {
+app.post("/viewScoreboard", (req, res) => {
     const date = req.body.date;
-    const score = await viewScoreboard(date);
-    if(score){
-    	res.send(score);
-    } else {
-    	res.send("Classifica vuota")
-    }
+    viewScoreboard(date, res);
 });
 
 
@@ -43,9 +39,11 @@ app.post("/selectUserScoreboard", async (req, res) => {
 });
 
 
+app.post("/viewSCOREDB", (req,res) => {
+    const id = req.body.id;
+    updateScoreboard(id);
+    res.send("aggiornato");
+});
+
 app.listen(port);
 console.log("App " + port);
-
-
-
-
