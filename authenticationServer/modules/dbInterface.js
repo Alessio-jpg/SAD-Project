@@ -20,7 +20,7 @@ const checkSessionUser = (username) => {
             return true;
         }
     });
-
+    
     return value;
 }
 
@@ -29,38 +29,37 @@ const checkUserCredentials = (username, password) => {
     const usersCollection = db.collection('users');
     const query = usersCollection.where('username', '==', username);
     const returnValue = query.get().then(async(snapshot) => {
-    if(!snapshot.empty) {
-        snapshot.forEach(user => {
-            dbId = user.id;
-            dbUsername = user.data().username;
-            dbPassword = user.data().password;
-        });
-        const userData = {
-            id: dbId,
-            username: dbUsername,
-            password: dbPassword
-        }
-        const compare = await bcrypt.compare(password, userData.password);
-
-        if(compare) {
-            return userData;
+        if(!snapshot.empty) {
+            snapshot.forEach(user => {
+                dbId = user.id;
+                dbUsername = user.data().username;
+                dbPassword = user.data().password;
+            });
+            const userData = {
+                id: dbId,
+                username: dbUsername,
+                password: dbPassword
+            }
+            const compare = await bcrypt.compare(password, userData.password);
+            
+            if(compare) {
+                return userData;
+            } else {
+                return false;
+            }
+            
         } else {
-            return false;
+            //res.json({auth: false, message: "L'utente non esiste"});
+            console.log("Login non esiste");
         }
-
-    } else {
-        //res.json({auth: false, message: "L'utente non esiste"});
-        console.log("Login non esiste");
-    }
     })
     .catch(error => {
         //res.status(400).json({error: error});
         console.log(error);
     });
-
+    
     return returnValue;
 }
-
 
 
 const logOut = (req, res) => {
@@ -81,25 +80,28 @@ const addUserSession = (username,id) => {
     });
 }
 
-const addUser = (username, password, res) => {
-
-    bcrypt.hash(password, 10).then((hash) => {
-
-        db.collection("users").add({
+const addUser = async (username, password, res) => {
+    
+    return bcrypt.hash(password, 10).then( async (hash) => {
+        
+        return await db.collection("users").add({
             username: username,
             password: hash
         }).then((result) => {
             res.send("Utente registrato");
+            console.log(result.id);
+            return result.id;
         }).catch((error) => {
             res.send("Utente non registrato");
         });
-
+        
     });
 } 
 
-const initializeUserScore = (username) => {
+const initializeUserScore = (id, username) => {
+    console.log("USER SCORE: ", id ," - ", username)
     
-    db.collection("scoreboard").add({
+    db.collection("scoreboard").doc(id).set({
         username: username,
         scoreW: 0,
         scoreM: 0,
@@ -109,7 +111,7 @@ const initializeUserScore = (username) => {
     }).catch((error) => {
         console.log(error);
     });
-
+    
 }
 
 const deleteUserSession = (userId) => {
