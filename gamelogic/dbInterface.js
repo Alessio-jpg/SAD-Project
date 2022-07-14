@@ -1,6 +1,5 @@
-
 const admin = require("firebase-admin");
-const credentials = require("./key.json"); //change path
+const credentials = require("./key.json");
 const { FieldValue } = require("@google-cloud/firestore");
 
 admin.initializeApp({
@@ -27,5 +26,14 @@ async function getTopics() {
     return value;
 }
 
+function updateScoreboard(id, value = 1) {
+    db.collection('scoreboard').doc(id).update({
+        scoreW: FieldValue.increment(value),
+        scoreM: FieldValue.increment(value),
+        scoreA: FieldValue.increment(value)
+    });
+};
 
-module.exports = {getTopics};
+
+
+module.exports = {getTopics, updateScoreboard};
