@@ -9,9 +9,10 @@ To create a new python environment
 ### `redis-server`
 To start the server (requires Redis to be installed, please check https://redis.io/docs/getting-started/installation/).
 
-### `conda activate SAD`
-### `python neuralnetwork_worker.py`
-To start the nerual network prediction.
+``` bash
+conda activate SAD
+python neuralnetwork_worker.py
+``` 
 
-
+To start the neural network prediction.
 
