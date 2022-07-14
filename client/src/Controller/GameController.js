@@ -155,6 +155,13 @@ export default class GameController {
         this.game.updateMatchedWord(value);
     }
 
+    clearWatchLive() {
+        this.game.updateWatchLive1([]);
+        this.game.updateWatchLive2([]);
+        this.game.updateWatchLive3([]);
+        this.game.updateWatchLive4([]);
+    }
+
     updateWatchLive1(data) {
         this.game.updateWatchLive1(data);
     }

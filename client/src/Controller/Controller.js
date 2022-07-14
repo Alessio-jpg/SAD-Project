@@ -108,10 +108,6 @@ export default class Controller {
         this.lobbyController.start_game();
     }
 
-    clearDrawing() {
-        this.gameController.clearDrawing();
-    }
-
     handleMouseDown(x,y) {
         this.gameController.handleMouseDown(x,y);
     }
@@ -134,6 +130,14 @@ export default class Controller {
 
     subscribeMatchedWord(observer) {
         this.gameController.subscribeMatchedWord(observer);
+    }
+
+    clearWatchLive() {
+        this.gameController.clearWatchLive();
+    }
+
+    clearDrawing() {
+        this.gameController.clearDrawing();
     }
 
     updateWatchLive(id, lines) {
