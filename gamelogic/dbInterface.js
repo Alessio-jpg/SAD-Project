@@ -26,14 +26,13 @@ async function getTopics() {
     return value;
 }
 
-function updateScoreboard(id, value = 1) {
+function updateScoreboard(id, value) {
+    console.log("UPDATO: " + id);
     db.collection('scoreboard').doc(id).update({
         scoreW: FieldValue.increment(value),
         scoreM: FieldValue.increment(value),
         scoreA: FieldValue.increment(value)
-    });
+    }).then((writeResult) => {console.log(writeResult)});
 };
-
-
 
 module.exports = {getTopics, updateScoreboard};

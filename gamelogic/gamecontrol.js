@@ -129,8 +129,6 @@ await drawingTopics.getTopics().then(
       if(TOPICS === null) {
         TOPICS = await database.getTopics();
         TOPICS = shuffle(TOPICS);
-        
-        TOPICS[0] = 'the_great_wall_of_china';
       }
       
       socket.emit("drawing-topics", {
@@ -145,7 +143,7 @@ await drawingTopics.getTopics().then(
       var u = findUserFromSocket(socket.id);
       console.log(socket.id);
       console.log(u);
-      if(u.canSubmit == true) {
+      if(u.canSubmit == true && lines !== []) {
         var msg = {
           id: u.uuid,
           queue_id: core.id,
@@ -302,15 +300,14 @@ await drawingTopics.getTopics().then(
       });
       
       
-      if(game.getPlayerScore(winners[0].uuid) > 0) {
+      //if(game.getPlayerScore(winners[0].uuid) > 0) {
         // Set Score in DB
         winners.forEach(u => {
-         database.updateScoreboard(u.uuid)
+          database.updateScoreboard(u.uuid, 1)
         });
-        resolve();
-      }
-      
-      console.log("Scoreboard aggiornata con il/i vincitore/i")
+        console.log("Scoreboard aggiornata con il/i vincitore/i")
+      //}
+
       core.ipc("game_end", {winners: payload})
     })
     
