@@ -2,7 +2,7 @@ describe('HomePage Test', () => {
   it('start game button', () => {
     cy.visit('/')
 
-    cy.get('.user__textBox').type('giocatore4').should('have.value', 'giocatore4')
+    cy.get('.user__textBox').type('Marisanna').should('have.value', 'Marisanna')
     cy.get('.password__textBox').type('password').should('have.value', 'password')
 
 
@@ -20,7 +20,7 @@ describe('HomePage Test', () => {
   it('view scoreboard button', () => {
     cy.visit('/')
 
-    cy.get('.user__textBox').type('player1').should('have.value', 'player1')
+    cy.get('.user__textBox').type('Alessio').should('have.value', 'Alessio')
     cy.get('.password__textBox').type('password').should('have.value', 'password')
 
 

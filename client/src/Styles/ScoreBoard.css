@@ -121,3 +121,8 @@
     font-size: 30px;
     margin-right: 60px;
  }
+
+#profile .position {
+    font-family: '3dHand';
+    font-size: 25px;
+}

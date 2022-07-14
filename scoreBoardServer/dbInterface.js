@@ -11,7 +11,7 @@ const db = admin.firestore();
 const viewScoreboard = (date, res) => {
 	var score = [];
     
-    const query = db.collection('scoreboard').select(date, 'username').orderBy(date, 'desc');
+    const query = db.collection('scoreboard').select(date, 'username').orderBy(date, 'desc').limit(10);
     query.get().then(snapshot => {
         if(!snapshot.empty) {
             

@@ -276,7 +276,7 @@ await drawingTopics.getTopics().then(
         if(u.socket !== null) {
           u.socket.emit("winning-event")
         }
-        payload.push(u.username)
+        payload.push(u.uuid)
       });
       
       var losers = game.users;
@@ -301,14 +301,16 @@ await drawingTopics.getTopics().then(
       
       
       //if(game.getPlayerScore(winners[0].uuid) > 0) {
-        // Set Score in DB
-        winners.forEach(u => {
-          database.updateScoreboard(u.uuid, 1)
-        });
-        console.log("Scoreboard aggiornata con il/i vincitore/i")
+      // Set Score in DB
+      
       //}
-
-      core.ipc("game_end", {winners: payload})
+      
+      if(game.getPlayerScore(winners[0].uuid) > 0) {
+        core.ipc("game_end", {winners: payload})
+      }
+      else {
+        core.ipc("game_end", {winners: []})
+      }
     })
     
     

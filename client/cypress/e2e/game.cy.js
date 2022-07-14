@@ -12,7 +12,7 @@ describe('HomePage Test', () => {
 
     cy.get('.play-button').click()
 
-    cy.wait(3000)
+    //cy.wait(3000)
 
     cy.url().should('eq', 'http://localhost:3000/WaitingRoom')
     cy.get('.loading').should('be.visible')
@@ -40,14 +40,12 @@ describe('HomePage Test', () => {
 
     socket.emit("join-queue");
 
-    cy.wait(15000);
-    
-    cy.get('.drowing-container')
-    .trigger('mouseover', {which: 1})
-    .trigger('mousedown', {which: 1})
-    .trigger('mousemove', {clientX: 100, clientY: 100})
-    .trigger('mouseup', {which: 1})
+    cy.wait(1000);
 
-    cy.wait(30000);
+    cy.get('.live-drawing-area').should('be.visible')
+    cy.get('.drawing-area').should('be.visible')
+    cy.get('.words-area').should('be.visible')
+    cy.get('.matchedWord').should('be.visible')
+
   })
 })

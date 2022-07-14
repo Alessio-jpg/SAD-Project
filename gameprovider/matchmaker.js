@@ -3,7 +3,8 @@ const socketIo = require('socket.io')
 const http = require('http')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
-const {define_master_event, spawn_game} = require("./loadbalancer.js")
+const {define_master_event, spawn_game, despawn_game} = require("./loadbalancer.js")
+const database = require("./dbInterface.js")
 
 const PORT = process.env.PORT || 5000
 
@@ -213,6 +214,25 @@ io.use(function(socket, next){
       console.log(reason)
     })
   })
+
+  define_master_event("c:game_end", (core, payload) => {
+    if(payload.winners.length > 1) {
+        console.log("game_"+ core + " has ended, game ended in a tie between: " + payload.winners);    
+    }
+    else if(payload.winners.length === 1) {
+        console.log("game_"+ core + " has ended, " + payload.winners + " won!");
+    }
+    else {
+        console.log("game_"+ core + " has ended, nobody won!");
+    }
+  
+    despawn_game(core);
+
+    console.log("Scoreboard aggiornata con il/i vincitore/i")
+    payload.winners.forEach(w => {
+      database.updateScoreboard(w,1);
+    });
+})
   
   server.listen(PORT, err=> {
     if(err) console.log(err)

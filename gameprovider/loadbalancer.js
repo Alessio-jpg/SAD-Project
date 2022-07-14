@@ -35,16 +35,20 @@ master.on("c:game_start", (core, payload) => {
     console.log("PORTAAAAAAAAAAAA\n" + payload.address + ":" + payload.port)
 })
 
+/*
 master.on("c:game_end", (core, payload) => {
     if(payload.winners.length > 1) {
         console.log("game_"+ core + " has ended, game ended in a tie between: " + payload.winners);    
     }
-    else {
+    else if(payload.winners.length === 1) {
         console.log("game_"+ core + " has ended, " + payload.winners + " won!");
     }
-    
-    master.despawn_core(core)
+    else {
+        console.log("game_"+ core + " has ended, nobody won!");
+    }
+
 })
+*/
 
 /*
 async function wait_for_game_start(game_core) {
@@ -54,6 +58,10 @@ async function wait_for_game_start(game_core) {
 
 function define_master_event(event, callback) {
     master.on(event, callback)
+}
+
+function despawn_game(core) {
+    master.despawn_core(core)
 }
 
 
@@ -79,4 +87,4 @@ async function spawn_game(game_id, player_data) {
     console.log("master started")
     
     
-    module.exports = {define_master_event, spawn_game}
+    module.exports = {define_master_event, spawn_game, despawn_game}
