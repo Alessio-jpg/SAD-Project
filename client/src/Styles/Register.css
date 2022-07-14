@@ -39,3 +39,8 @@
 .register div {
     margin-top: 7px;
 }
+
+.login-reg {
+    text-decoration: none;
+    color: #fff;
+}

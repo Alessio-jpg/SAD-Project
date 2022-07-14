@@ -7,6 +7,7 @@ import Lobby from "../Model/lobby";
 import LobbyController from "./LobbyController";
 import GameController from "./GameController";
 import Game from "../Model/Game";
+import $ from 'jquery';
 
 export default class Controller {
     constructor() {
@@ -47,8 +48,7 @@ export default class Controller {
     }
 
     async login(username, password) {
-        await this.loginController.login(username,password);
-        console.log("User dopo login" + this.giocatore.getUsername());
+        return await this.loginController.login(username,password);
     }
 
     userLogged() {

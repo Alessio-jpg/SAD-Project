@@ -12,7 +12,7 @@ export default class LoginController {
 
         Axios.defaults.withCredentials = true;
 
-        await Axios.post("http://localhost:4000/login", {
+        const message = await Axios.post("http://localhost:4000/login", {
         username: username,
         password: password,
         }).then((response) => {
@@ -20,6 +20,7 @@ export default class LoginController {
             if(!response.data.auth) {
                 console.log('Non autenticato');
                 this.giocatore.setIsLogged(false);
+                return response.data.message;
             } else {
                 console.log(response.data);
                 localStorage.setItem("token", response.data.token);
@@ -29,6 +30,8 @@ export default class LoginController {
                 this.giocatore.setIsLogged(true);
             }
         });
+
+        return message;
     }
 
 

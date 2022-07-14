@@ -2,6 +2,9 @@ import React from "react";
 import "../Styles/Register.css";
 import { Link } from "react-router-dom";
 import Controller from "../Controller/Controller";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class RegisterPage extends React.Component {
     constructor(props) {
@@ -10,11 +13,14 @@ export default class RegisterPage extends React.Component {
         this.state = {
             username: '',
             password: '',
+            showModal: false,
         }
 
         this.setUsername = this.setUsername.bind(this);
         this.setPassword = this.setPassword.bind(this);
         this.register = this.register.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
    
         this.controller = props.controller; //importare
     }
@@ -31,13 +37,38 @@ export default class RegisterPage extends React.Component {
         })
     }
 
+    handleShow() {
+      this.setState({
+        showModal: true,
+      })
+    }
+
+    handleClose() {
+      this.setState({
+        showModal: false,
+      })
+    }
+
     register() {
         this.controller.register(this.state.username, this.state.password);
+        this.handleShow();
     }
 
 
     render() {
         return(
+            <>
+            <Modal show={this.state.showModal} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Successful Registration</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Great Username</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={this.handleClose}>
+                      <Link className="login-reg" to="/">Login</Link>
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div className="register">
             <div className="register__container">
               <input
@@ -62,6 +93,7 @@ export default class RegisterPage extends React.Component {
               </div>
             </div>
           </div>
+          </>
         );
     }
 }
