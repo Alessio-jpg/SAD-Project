@@ -29,7 +29,7 @@ export default class MatchedWord extends React.Component {
         return(
             <div className='matchedWord-container'>
                 <div className='matchedWord'>
-                    <p>{this.state.matchedWord.replace("_"," ")}</p>
+                    <p>{this.state.matchedWord.replaceAll("_"," ")}</p>
                 </div>
             </div>            
         )
