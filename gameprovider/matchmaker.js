@@ -100,7 +100,7 @@ async function tryMatchmaking() {
     console.log("AT port " + port)
     
     
-
+    
     
     // Rimuovi gli user dalla coda
     for (let i = 0; i < PLAYERS_PER_GAME; i++) {
@@ -109,9 +109,9 @@ async function tryMatchmaking() {
       io.to(players_socket[i].id).emit("start_game",{players: message,game_server: "localhost:" + port})
       //players_socket[i].join(game_room);
     }
-
+    
     queue_count -= PLAYERS_PER_GAME
-
+    
     console.log("Players in queue: "+ queue_count)
     
     io.to("queue-room").emit('update-queue-count', queue_count)
@@ -176,18 +176,21 @@ io.use(function(socket, next){
           });
         }
       }
+      else {
+        console.log("User \u001b[1;34m" + socket.id + "\u001b[0m tried to join even though it's already in it")
+      }
     })
     
     socket.on('leave-queue', () => {
-      queue_mux.runExclusive( () => {
-        if(socket.rooms.has('queue-room')) {
+      
+      if(socket.rooms.has('queue-room')) {
+        queue_mux.runExclusive( () => {
           queue_count -= 1
           socket.leave('queue-room')
           console.log("User \u001b[1;34m" + socket.id + "\u001b[0m left the Queue")
           socket.to('queue-room').emit('update-queue-count', queue_count)
-        }
+        })
       }
-      )
     })
     
     socket.on('disconnecting', () => {
@@ -223,4 +226,5 @@ io.use(function(socket, next){
     .toString('hex')
     .slice(0, size)
   }
+  
   
