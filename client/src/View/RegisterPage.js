@@ -73,14 +73,14 @@ export default class RegisterPage extends React.Component {
             <div className="register__container">
               <input
                 type="text"
-                className="register__textBox"
+                className="username__textBox"
                 value={this.state.username}
                 onChange={(e) => this.setUsername(e.target.value)}
                 placeholder="Full Name"
               />
               <input
                 type="password"
-                className="register__textBox"
+                className="password__textBox"
                 value={this.state.password}
                 onChange={(e) => this.setPassword(e.target.value)}
                 placeholder="Password"

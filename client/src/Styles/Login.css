@@ -42,7 +42,7 @@
     width: 310px;
 }
 
-.login__textBox {
+.user__textBox, .password__textBox {
     padding: 10px;
     font-size: 18px;
     margin-bottom: 10px;

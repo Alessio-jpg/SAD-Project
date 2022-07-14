@@ -29,6 +29,7 @@ app.use(
 
 const { isLogged, login, isUserAuth, logout} = require("./modules/login");
 const {register} = require("./modules/registration");
+const {updateScoreBoard} = require("./setScoreBoard");
 
 app.post("/register", async(req, res) => {
     const {username , password} = req.body;
@@ -61,6 +62,13 @@ app.get("/isUserAuth", (req, res) => {
 app.get("/logout", (req, res) => {
     logout(req,res);
 });
+
+/*
+app.post("/updateScoreBoard", (req,res) => {
+    const id = req.body.id;
+    updateScoreBoard(id)
+    res.send("Aggiornato");
+});*/
 
 
 app.listen(port);

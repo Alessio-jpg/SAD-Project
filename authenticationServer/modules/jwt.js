@@ -5,7 +5,7 @@ const {deleteUserSession} = require("./dbInterface");
 
 const createToken = (id, username) => {
     const token = jwt.sign({id: id, username: username}, "{Wt%98WO*1m)jp2", {
-        expiresIn: 30,
+        expiresIn: '10h',
     });
 
     return token;
