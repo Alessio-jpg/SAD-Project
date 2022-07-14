@@ -52,8 +52,8 @@ export default class WatchLive extends React.Component {
 
         return(
             <>
-            <h5 className='user-name'>{this.state.name}</h5>
             <div className= "watch-live-container">
+            <h5 className='user-name'>{this.state.name}</h5>
                 <Stage
                     width={width}
                     height={width}

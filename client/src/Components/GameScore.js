@@ -39,8 +39,8 @@ export default class GameScore extends React.Component {
     render() {
         return(
             <>
-                <h5 className='user-name'>{this.state.name}</h5>
                 <div id="score-user" className= "watch-live-container">
+                <h5 id="current-user" className='user-name'>{this.state.name}</h5>
                     <p>{this.state.count}</p>
                 </div>
             </>

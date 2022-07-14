@@ -28,7 +28,7 @@ const checkUserCredentials = (username, password) => {
     var dbId, dbUsername, dbPassword;
     const usersCollection = db.collection('users');
     const query = usersCollection.where('username', '==', username);
-    const returnValue = query.get().then(snapshot => {
+    const returnValue = query.get().then(async(snapshot) => {
     if(!snapshot.empty) {
         snapshot.forEach(user => {
             dbId = user.id;
@@ -40,7 +40,7 @@ const checkUserCredentials = (username, password) => {
             username: dbUsername,
             password: dbPassword
         }
-        const compare = bcrypt.compare(password, userData.password);
+        const compare = await bcrypt.compare(password, userData.password);
 
         if(compare) {
             return userData;
