@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 
 const admin = require("firebase-admin");
-const credentials = require("../authenticationServer/key.json");
+const credentials = require("./key.json");
 
 
 app.use(express.json());
