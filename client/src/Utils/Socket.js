@@ -114,6 +114,9 @@ export default class Socket {
             
             this.socket.disconnect();
             this.socket = null;
+
+            this.controller.updatePartecipation(0);
+            this.controller.clearWatchLive();
         })
         
         this.socket.on("losing-event", () => {
@@ -122,6 +125,10 @@ export default class Socket {
             
             this.socket.disconnect();
             this.socket = null;
+
+            this.controller.updatePartecipation(0);
+            this.controller.clearWatchLive();
+            this.controller.clearDrawing();
         })
     }
     
