@@ -7,15 +7,15 @@ export default class WordToDraw extends Observable {
         this.wordToDraw = "";
     }
 
-    subscribeWordToDrow(observer) {
+    subscribeWordToDraw(observer) {
         this.subscribe(observer, this.wordToDraw);
     }
 
-    unsubscribeWordToDrow() {
+    unsubscribeWordToDraw() {
         this.unsubscribe();
     }
 
-    updateWordToDrow(data) {
+    updateWordToDraw(data) {
         this.wordToDraw = data;
 
         this.update(this.wordToDraw);

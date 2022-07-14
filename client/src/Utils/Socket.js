@@ -35,13 +35,17 @@ export default class Socket {
     }
     
     enqueue_lobby() {
-        console.log(this.socket);
-        this.socket.emit('join-queue', localStorage.getItem("token"));
+        this.socket.emit('join-queue');
     }
     
-    dequeue_lobby() {
+    async dequeue_lobby() {
         console.log("DEQUEUE")
-        this.socket.emit('leave-queue');
+        await new Promise ( resolve => 
+            {
+            this.socket.emit('leave-queue', (answer) => {
+                resolve(answer);
+            });
+        });
     }
     
     update_queue_count() {
@@ -67,7 +71,9 @@ export default class Socket {
     
     
     upload_event(lines) {
-        this.socket.emit("upload-event", lines);
+        if(this.socket != null) {
+            this.socket.emit("upload-event", lines);
+        }
     }
     
     
@@ -88,8 +94,8 @@ export default class Socket {
     drawing_topics() {
         this.socket.on("drawing-topics", (topics) => {
             console.log(topics);
-            this.controller.updateWordToDrow1(topics.topic1);
-            this.controller.updateWordToDrow2(topics.topic2);
+            this.controller.updateWordToDraw1(topics.topic1);
+            this.controller.updateWordToDraw2(topics.topic2);
         })
     }
     

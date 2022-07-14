@@ -56,12 +56,12 @@ export default class Game extends Observable {
         this.update(this.isStart);
     }
 
-    subscribeWordToDrow1(observer) {
-        this.wordToDraw1.subscribeWordToDrow(observer);
+    subscribeWordToDraw1(observer) {
+        this.wordToDraw1.subscribeWordToDraw(observer);
     }
 
-    subscribeWordToDrow2(observer) {
-        this.wordToDraw2.subscribeWordToDrow(observer);
+    subscribeWordToDraw2(observer) {
+        this.wordToDraw2.subscribeWordToDraw(observer);
     }
 
     subscribeMatchedWord(observer) {
@@ -88,12 +88,12 @@ export default class Game extends Observable {
         this.partecipation.subscribePartecipation(observer);
     }
 
-    unsubscribeWordToDrow1() {
-        this.wordToDraw1.unsubscribeWordToDrow();
+    unsubscribeWordToDraw1() {
+        this.wordToDraw1.unsubscribeWordToDraw();
     }
 
-    unsubscribeWordToDrow2() {
-        this.wordToDraw2.unsubscribeWordToDrow();
+    unsubscribeWordToDraw2() {
+        this.wordToDraw2.unsubscribeWordToDraw();
     }
 
     unsubscribeMatchedWord() {
@@ -120,12 +120,12 @@ export default class Game extends Observable {
         this.partecipation.unsubscribePartecipation();
     }
 
-    updateWordToDrow1(data) {
-        this.wordToDraw1.updateWordToDrow(data);
+    updateWordToDraw1(data) {
+        this.wordToDraw1.updateWordToDraw(data);
     }
     
-    updateWordToDrow2(data) {
-        this.wordToDraw2.updateWordToDrow(data);
+    updateWordToDraw2(data) {
+        this.wordToDraw2.updateWordToDraw(data);
     } 
 
     updateMatchedWord(data) {

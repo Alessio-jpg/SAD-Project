@@ -20,8 +20,8 @@ export default class GamePage extends React.Component {
       line2: [],
       line3: [],
       line4: [],
-      wordToDrow1: "",
-      wordToDrow2: "",
+      wordToDraw1: "",
+      wordToDraw2: "",
       matchedWord: "",
       gameCount: 0,
     }
@@ -37,8 +37,8 @@ export default class GamePage extends React.Component {
   componentDidMount() {
     //this.controller.neural_guess();
     
-    this.controller.subscribeWordToDrow1(this.setWordToDrow1.bind(this));
-    this.controller.subscribeWordToDrow2(this.setWordToDrow2.bind(this));
+    this.controller.subscribeWordToDraw1(this.setWordToDraw1.bind(this));
+    this.controller.subscribeWordToDraw2(this.setWordToDraw2.bind(this));
     this.controller.subscribeMatchedWord(this.setMatchedWord.bind(this));
     this.controller.subscribeWatchLive1(this.setLine1.bind(this));
     this.controller.subscribeWatchLive2(this.setLine2.bind(this));
@@ -68,14 +68,14 @@ export default class GamePage extends React.Component {
     // -----
     
     this.scaleWidth();
-    
 
-    //this.controller.other_player_lines_update(this.state.id); //forse non va
+    this.controller.updateIsStartObserve(false);
+    
   }
   
   componentWillUnmount() {
-    this.controller.unsubscribeWordToDrow1();
-    this.controller.unsubscribeWordToDrow2();
+    this.controller.unsubscribeWordToDraw1();
+    this.controller.unsubscribeWordToDraw2();
     this.controller.unsubscribeMatchedWord();
     this.controller.unsubscribeWatchLive1();
     this.controller.unsubscribeWatchLive2();
@@ -84,15 +84,15 @@ export default class GamePage extends React.Component {
     this.controller.unsubscribePartecipation();
   }
   
-  setWordToDrow1(word) {
+  setWordToDraw1(word) {
     this.setState({
-      wordToDrow1: word
+      wordToDraw1: word
     })
   }
   
-  setWordToDrow2(word) {
+  setWordToDraw2(word) {
     this.setState({
-      wordToDrow2: word
+      wordToDraw2: word
     })
   }
   
@@ -185,7 +185,7 @@ export default class GamePage extends React.Component {
         < CountDownBar />
       </div>
       <div className="second-colum">
-        <WordToDrawArea firstWord = {this.state.wordToDrow1} secondWord = {this.state.wordToDrow2} />
+        <WordToDrawArea firstWord = {this.state.wordToDraw1} secondWord = {this.state.wordToDraw2} />
         < MatchedWord matchedWord = {this.state.matchedWord}/>
       </div>
       <div className="third-colum">

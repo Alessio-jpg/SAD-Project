@@ -17,6 +17,7 @@ export default class WaitingRoom extends React.Component {
     }
     
     componentDidMount() {
+        console.log("ENQUEUE")
         localStorage.removeItem("players_ingame");
         this.controller.enqueue();
         this.controller.subscribeLobbyObserve(this.setCount.bind(this));
@@ -29,10 +30,16 @@ export default class WaitingRoom extends React.Component {
         })
         */
     }
-    
+
+    /*
+    componentDidUpdate(prevPops, prevState) {
+        console.log("PROPPO")
+      }
+    */
     
     componentWillUnmount() {
         console.log("FOCUS?")
+        console.log(this.controller)
         //this.controller.dequeue();
         this.controller.unsubscribeLobbyObserve();
         this.controller.unsubscribeIsStartObserve();

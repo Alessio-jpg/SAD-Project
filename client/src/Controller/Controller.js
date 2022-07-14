@@ -79,15 +79,6 @@ export default class Controller {
     updateLobbyCount(value) {
         this.lobbyController.updateLobbyCount(value);
     }
-    
-    setIsStart(val) {
-        this.gameController.setIsStart(val);
-    }
-
-    getIsStart() {
-        return this.gameController.getIsStart();
-    }
-    
 
     subscribeIsStartObserve(observer) {
         this.gameController.subscribeIsStartObserve(observer);
@@ -133,12 +124,12 @@ export default class Controller {
         return this.gameController.getLines();
     }
 
-    subscribeWordToDrow1(observer) {
-        this.gameController.subscribeWordToDrow1(observer);
+    subscribeWordToDraw1(observer) {
+        this.gameController.subscribeWordToDraw1(observer);
     }
 
-    subscribeWordToDrow2(observer) {
-        this.gameController.subscribeWordToDrow2(observer);
+    subscribeWordToDraw2(observer) {
+        this.gameController.subscribeWordToDraw2(observer);
     }
 
     subscribeMatchedWord(observer) {
@@ -169,12 +160,12 @@ export default class Controller {
         this.gameController.subscribePartecipation(observer);
     }
 
-    unsubscribeWordToDrow1() {
-        this.gameController.unsubscribeWordToDrow1();
+    unsubscribeWordToDraw1() {
+        this.gameController.unsubscribeWordToDraw1();
     }
 
-    unsubscribeWordToDrow2() {
-        this.gameController.unsubscribeWordToDrow2();
+    unsubscribeWordToDraw2() {
+        this.gameController.unsubscribeWordToDraw2();
     }
 
     unsubscribeMatchedWord() {
@@ -201,12 +192,12 @@ export default class Controller {
         this.gameController.unsubscribePartecipation();
     }
 
-    updateWordToDrow1(value) {
-        this.gameController.updateWordToDrow1(value);
+    updateWordToDraw1(value) {
+        this.gameController.updateWordToDraw1(value);
     }
 
-    updateWordToDrow2(value) {
-        this.gameController.updateWordToDrow2(value);
+    updateWordToDraw2(value) {
+        this.gameController.updateWordToDraw2(value);
     }
 
     updateMatchedWord(value) {
