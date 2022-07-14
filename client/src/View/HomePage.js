@@ -20,8 +20,8 @@ export default class HomePage extends React.Component {
                     <p>{this.controller.getUsername()}</p>
                 </div>
                 <div className="first-button">
-                    <Link to="/WaitingRoom">
-                        <button className="button-play">Start Game</button>
+                    <Link className="play-button" to="/WaitingRoom">
+                        <button id="play" className="button-play">Start Game</button>
                     </Link>
                 </div>
                 <div className="second-button">

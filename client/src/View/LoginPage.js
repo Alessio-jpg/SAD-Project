@@ -94,14 +94,14 @@ export default class LoginPage extends React.Component {
                 </div>
                 <input
                     type="text"
-                    className="login__textBox"
+                    className="user__textBox"
                     value={this.state.username}
                     onChange={(e) => this.setUsername(e.target.value)}
                     placeholder="Username"
                 />
                 <input
                     type="password"
-                    className="login__textBox"
+                    className="password__textBox"
                     value={this.state.password}
                     onChange={(e) => this.setPassword(e.target.value)}
                     placeholder="Password"
